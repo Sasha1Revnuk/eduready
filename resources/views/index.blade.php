@@ -64,62 +64,31 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="main_title">
-                    <h2 class="mb-3">Our Popular Courses</h2>
+                    <h2 class="mb-3">@lang('lang.main.courses')</h2>
                     <p>
-                        Replenish man have thing gathering lights yielding shall you
+                        @lang('lang.main.subCourses')
                     </p>
                 </div>
             </div>
         </div>
         <div class="row">
             <!-- single course -->
-            <div class="col-lg-12">
-                <div class="owl-carousel active_course">
-                    <div class="single_course">
-                        <div class="course_head">
-                            <img class="img-fluid" src="{{asset('img/courses/c1.jpg')}}" alt="" />
+            <div class="col-lg-12"  >
+                <div class="owl-carousel active_course" >
+                    @foreach($courses as $course)
+                        <div class="single_course" >
+                            <div class="course_head " >
+                                <img class="img-fluid" src="{{asset('img/courses/' . $course->id . '/' . $course->img)}}" alt="{{$course->img}}" />
+                            </div>
+                            <div class="course_content " style="text-align: center">
+                                <span class="tag mb-4 d-inline-block">{{$course->category->title}}</span>
+                                <h4 class="mb-3">
+                                    <a href="course-details.html">{{$course->title}}</a>
+                                </h4>
+                                {!! $course->description !!}
+                            </div>
                         </div>
-                        <div class="course_content">
-                            <span class="tag mb-4 d-inline-block">design</span>
-                            <h4 class="mb-3">
-                                <a href="course-details.html">Custom Product Design</a>
-                            </h4>
-                            <p>
-                                One make creepeth man bearing their one firmament won't fowl
-                                meat over sea
-                            </p>
-                        </div>
-                    </div>
-                    <div class="single_course">
-                        <div class="course_head">
-                            <img class="img-fluid" src="{{asset('img/courses/c1.jpg')}}" alt="" />
-                        </div>
-                        <div class="course_content">
-                            <span class="tag mb-4 d-inline-block">design</span>
-                            <h4 class="mb-3">
-                                <a href="course-details.html">Custom Product Design</a>
-                            </h4>
-                            <p>
-                                One make creepeth man bearing their one firmament won't fowl
-                                meat over sea
-                            </p>
-                        </div>
-                    </div>
-                    <div class="single_course">
-                        <div class="course_head">
-                            <img class="img-fluid" src="{{asset('img/courses/c1.jpg')}}" alt="" />
-                        </div>
-                        <div class="course_content">
-                            <span class="tag mb-4 d-inline-block">design</span>
-                            <h4 class="mb-3">
-                                <a href="course-details.html">Custom Product Design</a>
-                            </h4>
-                            <p>
-                                One make creepeth man bearing their one firmament won't fowl
-                                meat over sea
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -132,64 +101,40 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="main_title">
-                    <h2 class="mb-3 text-white">Найбижчі події</h2>
+                    <h2 class="mb-3 text-white">@lang('lang.main.events')</h2>
                     <p>
-                        Replenish man have thing gathering lights yielding shall you
+                        @lang('lang.main.subEvents')
                     </p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="single_event position-relative">
+            @foreach($events as $event)
+                <div class="col-lg-6 col-md-6">
+                    <div class="single_event position-relative">
                     <div class="event_thumb">
-                        <img src="{{asset('img/event/e1.jpg')}}" alt="" />
+                        <img src="{{asset('img/events/' . $event->img)}}" alt="{{$event->img}}" />
                     </div>
                     <div class="event_details">
                         <div class="d-flex mb-4">
-                            <div class="date"><span>15</span> Jun</div>
+                            <div class="date"><span>{{$event->day}}</span>{{$event->month}}</div>
 
                             <div class="time-location">
                                 <p>
-                                    <span class="ti-time mr-2"></span> 12:00 AM - 12:30 AM
+                                    <span class="ti-time mr-2"></span> {{$event->time}}
                                 </p>
                                 <p>
-                                    <span class="ti-location-pin mr-2"></span> Hilton Quebec
+                                    <span class="ti-location-pin mr-2"></span> {{$event->title}}
                                 </p>
                             </div>
                         </div>
                         <p>
-                            One make creepeth man for so bearing their firmament won't
-                            fowl meat over seas great
+                            {{$event->text}}
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="single_event position-relative">
-                    <div class="event_thumb">
-                        <img src="{{asset('img/event/e2.jpg')}}" alt="" />
-                    </div>
-                    <div class="event_details">
-                        <div class="d-flex mb-4">
-                            <div class="date"><span>15</span> Jun</div>
-
-                            <div class="time-location">
-                                <p>
-                                    <span class="ti-time mr-2"></span> 12:00 AM - 12:30 AM
-                                </p>
-                                <p>
-                                    <span class="ti-location-pin mr-2"></span> Hilton Quebec
-                                </p>
-                            </div>
-                        </div>
-                        <p>
-                            One make creepeth man for so bearing their firmament won't
-                            fowl meat over seas great
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -200,9 +145,9 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="main_title">
-                    <h2 class="mb-3">Client say about me</h2>
+                    <h2 class="mb-3">@lang('lang.main.feedbacks')</h2>
                     <p>
-                        Replenish man have thing gathering lights yielding shall you
+                        @lang('lang.main.subFeedbacks')
                     </p>
                 </div>
             </div>
@@ -210,108 +155,28 @@
 
         <div class="row">
             <div class="testi_slider owl-carousel">
+                @foreach($feedbacks as $feedback)
                 <div class="testi_item">
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
-                            <img src="{{asset('img/testimonials/t1.jpg')}}" alt="" />
+                            @if($feedback->user->img != 'user.jpg')
+                                <img src="{{ asset('img/users/' . $feedback->user->id . '/' . $feedback->user->img)}}" alt="{{$feedback->user->img}}" />
+                            @else
+                                <img src="{{ asset('img/users/' . $feedback->user->img)}}" alt="{{$feedback->user->img}}" />
+                            @endif
                         </div>
                         <div class="col-lg-8">
                             <div class="testi_text">
-                                <h4>Elite Martin</h4>
+                                <h4>{{$feedback->title}}</h4>
+                                <p><strong>Course: </strong>{{$feedback->course->title}}</p>
                                 <p>
-                                    Him, made can't called over won't there on divide there
-                                    male fish beast own his day third seed sixth seas unto.
-                                    Saw from
+                                    {{$feedback->text}}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="testi_item">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <img src="{{asset('img/testimonials/t2.jpg')}}" alt="" />
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="testi_text">
-                                <h4>Davil Saden</h4>
-                                <p>
-                                    Him, made can't called over won't there on divide there
-                                    male fish beast own his day third seed sixth seas unto.
-                                    Saw from
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testi_item">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <img src="{{asset('img/testimonials/t1.jpg')}}" alt="" />
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="testi_text">
-                                <h4>Elite Martin</h4>
-                                <p>
-                                    Him, made can't called over won't there on divide there
-                                    male fish beast own his day third seed sixth seas unto.
-                                    Saw from
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testi_item">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <img src="{{asset('img/testimonials/t2.jpg')}}" alt="" />
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="testi_text">
-                                <h4>Davil Saden</h4>
-                                <p>
-                                    Him, made can't called over won't there on divide there
-                                    male fish beast own his day third seed sixth seas unto.
-                                    Saw from
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testi_item">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <img src="{{asset('img/testimonials/t1.jpg')}}" alt="" />
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="testi_text">
-                                <h4>Elite Martin</h4>
-                                <p>
-                                    Him, made can't called over won't there on divide there
-                                    male fish beast own his day third seed sixth seas unto.
-                                    Saw from
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testi_item">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <img src="{{asset('img/testimonials/t2.jpg')}}" alt="" />
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="testi_text">
-                                <h4>Davil Saden</h4>
-                                <p>
-                                    Him, made can't called over won't there on divide there
-                                    male fish beast own his day third seed sixth seas unto.
-                                    Saw from
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

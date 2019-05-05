@@ -60,7 +60,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                @include('layouts.mainMenu');
+                @include('layouts.mainMenu')
             </div>
         </nav>
     </div>

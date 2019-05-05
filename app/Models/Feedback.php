@@ -23,6 +23,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \App\Models\User $user
  *
  * @package App\Models
+ * max:100
  */
 class Feedback extends Eloquent
 {
