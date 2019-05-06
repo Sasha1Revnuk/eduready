@@ -2,30 +2,28 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 single-footer-widget">
-                <h4>Меню</h4>
+                <h4>@lang('lang.footer.menu')</h4>
                 <ul>
-                    <li><a href="#">Managed Website</a></li>
-                    <li><a href="#">Manage Reputation</a></li>
-                    <li><a href="#">Power Tools</a></li>
-                    <li><a href="#">Marketing Service</a></li>
+                    @foreach($menu as $title => $url)
+                        <li><a href="{{is_array($url) ? $url['hard'] : $url}}">{{$title}}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-lg-4 col-md-6 single-footer-widget">
-                <h4>Категории</h4>
+                <h4>@lang('lang.footer.categories')</h4>
                 <ul>
-                    <li><a href="#">Jobs</a></li>
-                    <li><a href="#">Brand Assets</a></li>
-                    <li><a href="#">Investor Relations</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    @foreach($categories as $category)
+                        <li><a href="{{'/category/' . $category->id}}">{{$category->title}}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-lg-4 col-md-6 single-footer-widget">
-                <h4>Адрес</h4>
+                <h4>@lang('lang.footer.address')</h4>
                 <ul>
-                    <li><b>Улица:</b> бла бла бла</li>
-                    <li><b>Город:</b> бла бла бла</li>
-                    <li><b>Страна:</b> бла бла бла</li>
-                    <li><b>Телефон:</b> бла бла бла</li>
+                    <li><b>@lang('lang.footer.titleStreet'):</b> @lang('lang.footer.street')</li>
+                    <li><b>@lang('lang.footer.titleCity'):</b> @lang('lang.footer.city')</li>
+                    <li><b>@lang('lang.footer.titleCountry'):</b> @lang('lang.footer.country')</li>
+                    <li><b>@lang('lang.footer.titlePhone'):</b> @lang('lang.footer.phone')</li>
                 </ul>
             </div>
 
@@ -33,15 +31,12 @@
         </div>
         <div class="row footer-bottom d-flex justify-content-between">
             <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            @lang('lang.footer.copyright')
             </p>
             <div class="col-lg-4 col-sm-12 footer-social">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-twitter"></i></a>
-                <a href="#"><i class="ti-dribbble"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
+                <a href="https://www.facebook.com/kneu.edu.ua"><i class="ti-facebook"></i></a>
+                <a href="https://twitter.com/KNEUofficial"><i class="ti-twitter"></i></a>
+                <a href="https://www.youtube.com/user/kneucnannel/videos?view=1"><i class="ti-youtube"></i></a>
             </div>
         </div>
     </div>

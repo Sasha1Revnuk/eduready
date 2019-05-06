@@ -15,3 +15,4 @@
 Auth::routes();
 
 Route::get('/', 'IndexController@show')->name('main');
+Route::get('/about-us', 'AboutUsController@index')->name('aboutUs');

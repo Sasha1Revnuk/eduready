@@ -13,5 +13,20 @@
             'subEvents' => 'Запрошуємо відвідати спеціальні події',
             'feedbacks' => 'Відгуки',
             'subFeedbacks' => 'Підпишіться на курс та залиште відгук',
+        ],
+        'footer' => [
+            'street' => 'проспект Перемоги, 54/1',
+            'city' => 'Київ',
+            'country' => 'Україна',
+            'phone' => '456-3162',
+            'address' => 'Адреса',
+            'titleStreet' => 'Вулиця',
+            'titleCity' => 'Місто',
+            'titleCountry' => 'Країна',
+            'titlePhone' => 'Телефон',
+            'categories' => 'Категорії',
+            'menu' => 'Меню',
+            'copyright' => '@All rights reserved, 2019',
+
         ]
     ];
