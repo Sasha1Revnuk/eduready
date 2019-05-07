@@ -18,7 +18,7 @@
             'street' => 'проспект Перемоги, 54/1',
             'city' => 'Київ',
             'country' => 'Україна',
-            'phone' => '456-3162',
+            'phone' => '(044) 456-3162',
             'address' => 'Адреса',
             'titleStreet' => 'Вулиця',
             'titleCity' => 'Місто',
@@ -27,6 +27,15 @@
             'categories' => 'Категорії',
             'menu' => 'Меню',
             'copyright' => '@All rights reserved, 2019',
-
+        ],
+        'contacts' => [
+            'street' => 'проспект Перемоги, 54/1',
+            'city' => 'Київ',
+            'country' => 'Україна',
+            'phone1' => '(044) 456-3162',
+            'phone2' => '(044) 371-6112',
+            'email' => 'office@kneu.edu.ua',
+            'emailText' => 'Пишіть нам в будь-який час',
+            'sendButton' => 'Відіслати повідомлення'
         ]
     ];

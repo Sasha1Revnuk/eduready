@@ -16,3 +16,5 @@ Auth::routes();
 
 Route::get('/', 'IndexController@show')->name('main');
 Route::get('/about-us', 'AboutUsController@index')->name('aboutUs');
+Route::get('/contacts', 'ContactController@index')->name('contact');
+Route::post('/contacts', 'ContactController@send')->name('contactSend');

@@ -30,7 +30,7 @@ class Controller extends BaseController
             'Головна' => '/',
             'Про нас' => '/about-us',
             'Курси' => ['hard' => '#', 'soft' => $cat],
-            'Контакти' => '#'
+            'Контакти' => '/contacts'
         ];
         return $mainMenu;
     }
