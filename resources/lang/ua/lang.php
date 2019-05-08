@@ -37,5 +37,11 @@
             'email' => 'office@kneu.edu.ua',
             'emailText' => 'Пишіть нам в будь-який час',
             'sendButton' => 'Відіслати повідомлення'
+        ],
+        'courses' => [
+            'title' => 'Курси',
+            'subTitle' => 'Вибери курс та розпочни навчання',
+            'allCourses' => 'Всі курси',
+            'myCourses' => 'Мої курси'
         ]
     ];

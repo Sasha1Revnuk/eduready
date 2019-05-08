@@ -8,7 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'AboutUs' => $baseDir . '/database/migrations/2019_04_28_201725_about_us.php',
     'AddCategoriesColumn' => $baseDir . '/database/migrations/2019_04_29_140252_add_categories_column.php',
+    'AddDescCourse' => $baseDir . '/database/migrations/2019_05_09_001049_addDescCourse.php',
     'AddImageEvents' => $baseDir . '/database/migrations/2019_05_05_231204_addImageEvents.php',
+    'AddUrlToCategory' => $baseDir . '/database/migrations/2019_05_09_000001_addUrlToCategory.php',
+    'AddUrlToCourses' => $baseDir . '/database/migrations/2019_05_08_234211_addUrlToCourses.php',
     'Advantages' => $baseDir . '/database/migrations/2019_04_28_201611_advantages.php',
     'CreateCategories' => $baseDir . '/database/migrations/2019_04_28_192001_create_categories.php',
     'CreateComments' => $baseDir . '/database/migrations/2019_04_28_192537_create_comments.php',

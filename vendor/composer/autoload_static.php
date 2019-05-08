@@ -326,7 +326,10 @@ class ComposerStaticInit5d98a29d6cd2c30eda18fbac28b3b153
     public static $classMap = array (
         'AboutUs' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_201725_about_us.php',
         'AddCategoriesColumn' => __DIR__ . '/../..' . '/database/migrations/2019_04_29_140252_add_categories_column.php',
+        'AddDescCourse' => __DIR__ . '/../..' . '/database/migrations/2019_05_09_001049_addDescCourse.php',
         'AddImageEvents' => __DIR__ . '/../..' . '/database/migrations/2019_05_05_231204_addImageEvents.php',
+        'AddUrlToCategory' => __DIR__ . '/../..' . '/database/migrations/2019_05_09_000001_addUrlToCategory.php',
+        'AddUrlToCourses' => __DIR__ . '/../..' . '/database/migrations/2019_05_08_234211_addUrlToCourses.php',
         'Advantages' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_201611_advantages.php',
         'CreateCategories' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_192001_create_categories.php',
         'CreateComments' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_192537_create_comments.php',

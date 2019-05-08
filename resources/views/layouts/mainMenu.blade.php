@@ -7,11 +7,11 @@
                 </li>
             @else
                 <li class="nav-item submenu dropdown {{request()->path() == $src['hard'] ? 'active' : '/' . request()->path() ==  $src['hard'] ? 'active' : ''}}">
-                    <a href="{{$src['hard']}}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >{{$name}}</a >
+                    <a href="{{$src['hard']}}" class="nav-link dropdown-toggle"   >{{$name}}</a >
                     <ul class="dropdown-menu">
                         @foreach($src['soft'] as $id => $title)
                             <li class="nav-item">
-                                <a class="nav-link" href="#{{$id}}">{{$title}}</a>
+                                <a class="nav-link" href="{{$id}}">{{$title}}</a>
                             </li>
                         @endforeach
                     </ul>

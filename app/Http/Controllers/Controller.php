@@ -29,7 +29,7 @@ class Controller extends BaseController
         $mainMenu = [
             'Головна' => '/',
             'Про нас' => '/about-us',
-            'Курси' => ['hard' => '#', 'soft' => $cat],
+            'Курси' => ['hard' => '/courses', 'soft' => $cat],
             'Контакти' => '/contacts'
         ];
         return $mainMenu;
