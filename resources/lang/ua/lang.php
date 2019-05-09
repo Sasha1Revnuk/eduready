@@ -42,6 +42,16 @@
             'title' => 'Курси',
             'subTitle' => 'Вибери курс та розпочни навчання',
             'allCourses' => 'Всі курси',
-            'myCourses' => 'Мої курси'
-        ]
+            'myCourses' => 'Мої курси',
+            'subscribeSpan' => 'В моїх курсах'
+        ],
+        'singleCourse' => [
+            'description' => 'Опис',
+            'author' => 'Автор',
+            'enrolButton' => 'Підписатись',
+            'unsubscribeButton' => 'Відписатись',
+            'feedbacks' => 'Відгуки',
+            'sections' => 'Секції',
+            'viewButton' => 'Розгорнути'
+         ]
     ];

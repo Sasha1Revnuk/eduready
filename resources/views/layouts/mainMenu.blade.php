@@ -23,20 +23,24 @@
                 <i class="ti-search"></i>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link" id="login">
-                <i class="ti-user"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link" id="register">
-                <i class="ti-shift-right"></i>
-            </a>
-        </li>
-        <!-- <li class="nav-item">
-            <a href="#" class="nav-link" id="admin">
-            User Name
-          </a>
-        </li> -->
+            @if(\Illuminate\Support\Facades\Auth::check())
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link" id="admin">
+                        {{Auth::user()->name}}
+                    </a>
+                </li>
+            @else
+            <li class="nav-item">
+                <a href="/login" class="nav-link" id="login">
+                    <i class="ti-user"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/register" class="nav-link" id="register">
+                    <i class="ti-shift-right"></i>
+                </a>
+            </li>
+            @endif
+        <!--  -->
     </ul>
 </div>

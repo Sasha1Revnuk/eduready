@@ -3373,3 +3373,13 @@ h6 {
   display: flex;
   align-items: stretch;
 }
+a.lessonLink{
+ color: #7b838a;
+}
+a.lessonLink:hover{
+  font-size: medium;
+ color: #002347;
+}
+.img-feedbacks{
+  max-width: 60px;
+}

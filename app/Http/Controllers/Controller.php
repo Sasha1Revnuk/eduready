@@ -23,7 +23,7 @@ class Controller extends BaseController
         $categories = Category::all();
         $cat = [];
         foreach ($categories as $category) {
-            $cat[$category['id']] = $category['title'];
+            $cat[$category['url']] = $category['title'];
         }
 
         $mainMenu = [
