@@ -53,6 +53,10 @@ class CoursesController extends Controller
         $course->load('sections');
         $course->sections->load('lessons');
         $author = User::where('id', $course->creater_id)->first();
+        $coursesArray =[];
+        if (Auth::check()) {
+            $coursesArray = explode(',', Auth::user()->courses);
+        }
         //dd($course);
         $data = [
             'title' => $course->title,
@@ -64,7 +68,7 @@ class CoursesController extends Controller
             'categories'=> $this->categories,
             'course' => $course,
             'author' => $author,
-            'coursesArray' => explode(',', Auth::user()->courses)
+            'coursesArray' => $coursesArray
         ];
 
         return view('courses.single.single')->with($data);
@@ -94,6 +98,7 @@ class CoursesController extends Controller
             }
         }
         $user->courses = implode(',', $coursesArray);
+        //dd($user->courses);
         $user->save();
         return redirect()->back();
     }
