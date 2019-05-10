@@ -3,10 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="main_title">
-                    <h2 class="mb-3">@lang('lang.courses.title')</h2>
-                    <p>
-                        @lang('lang.courses.subTitle')
-                    </p>
+                    <h2 class="mb-3">{{$category->title}}</h2>
                 </div>
             </div>
         </div>
@@ -53,7 +50,7 @@
                     </div>
                 </div>
 
-                @include('courses.pagination')
+                @include('categories.pagination')
 
 </div>
 </div>

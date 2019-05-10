@@ -11,7 +11,7 @@
                     <ul class="dropdown-menu">
                         @foreach($src['soft'] as $id => $title)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{$id}}">{{$title}}</a>
+                                <a class="nav-link" href="{{'/category/'. $id}}">{{$title}}</a>
                             </li>
                         @endforeach
                     </ul>

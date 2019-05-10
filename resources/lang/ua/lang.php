@@ -48,6 +48,7 @@
         'singleCourse' => [
             'description' => 'Опис',
             'author' => 'Автор',
+            'category' => 'Категорія',
             'enrolButton' => 'Підписатись',
             'unsubscribeButton' => 'Відписатись',
             'feedbacks' => 'Відгуки',

@@ -24,5 +24,8 @@ Route::post('/contacts', 'ContactController@send')->name('contactSend');
 
 Route::get('/courses', 'CoursesController@index')->name('coursesPage');
 Route::get('/learn/{category}/{course}', 'CoursesController@singleCourse')->name('singeCourse');
+Route::get('/learn/{category}/{course}/{lesson}', 'LessonsController@index')->name('singeLesson');
 Route::get('/subscribe/{id}', 'CoursesController@subscribe')->name('subscribeCourse');
 Route::get('/unsubscribe/{id}', 'CoursesController@unsubscribe')->name('unSubscribeCourse');
+
+Route::get('/category/{url}', 'CategoriesController@index')->name('CategoryPage');

@@ -23,7 +23,7 @@
                             <p>
                             <ul class="course_details_left collapse" id="{{'collapse' . $section->id}}">
                                 @foreach($section->lessons as $lesson)
-                                    <li class="justify-content-between d-flex"><a class="lessonLink" href="{{'/' . $course->url . '/' . $section->id . '/' . $lesson->id}}">{{$lesson->title}}</a></li>
+                                    <li class="justify-content-between d-flex"><a class="lessonLink" href="{{'/learn/' . $course->url . '/'  . $lesson->id}}">{{$lesson->title}}</a></li>
                                 @endforeach
 
                             </ul>
@@ -41,6 +41,12 @@
                         <a class="justify-content-between d-flex" href="{{'/search?author=' . $author->name}}">
                             <p>@lang('lang.singleCourse.author')</p>
                             <span class="or">{{$author->name}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="{{'/category/' . $course->category->url}}">
+                            <p>@lang('lang.singleCourse.category')</p>
+                            <span class="or">{{$course->category->title}}</span>
                         </a>
                     </li>
                 </ul>
