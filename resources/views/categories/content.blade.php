@@ -49,8 +49,8 @@
                         </div><br />
                     </div>
                 </div>
-
                 @include('categories.pagination')
 
+</div>
 </div>
 </div>

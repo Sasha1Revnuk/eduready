@@ -54,6 +54,6 @@
                 </div>
 
                 @include('courses.pagination')
-
+    </div>
 </div>
 </div>

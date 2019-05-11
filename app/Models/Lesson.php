@@ -9,6 +9,7 @@ namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
 
+
 /**
  * Class Lesson
  * 
@@ -47,4 +48,9 @@ class Lesson extends Eloquent
 	{
 		return $this->hasMany(\App\Models\Comment::class);
 	}
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-M, Y');
+    }
+
 }

@@ -1,4 +1,5 @@
-
+<div class="col-lg-12">
+    <div class="row" style="  display: flex; justify-content: center">
 <nav class="blog-pagination justify-content-center d-flex">
     @if ($courses->hasPages())
         <ul class="pagination">
@@ -21,4 +22,4 @@
             </li>
         </ul>
     @endif
-</nav>
+</nav></div></div>

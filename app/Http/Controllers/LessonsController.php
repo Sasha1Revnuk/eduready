@@ -14,10 +14,14 @@ class LessonsController extends Controller
 
     public function index($cat, $course, $lessonId)
     {
-        $lesson = Lesson::find($lessonId)->first();
+        $lesson = Lesson::find($lessonId);
         $lesson->load('section');
         $lesson->section->load('course');
         $lesson->section->course->load('category');
+        $lesson->load('comments');
+        $lessons = Lesson::query()
+            ->where('section_id', $lesson->section->id)
+            ->get();
         $data = [
             'title' => $lesson->title,
             'breadCrumbs' => [
@@ -28,7 +32,8 @@ class LessonsController extends Controller
             ],
             'menu' => $this->mainMenu,
             'categories'=> $this->categories,
-            'lesson' => $lesson
+            'lesson' => $lesson,
+            'lessons' => $lessons
         ];
 
         return view('lessons.index')->with($data);
