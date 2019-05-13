@@ -46,7 +46,7 @@
                                     @endphp
                                 @endif
                             @endforeach
-                        </div><br />
+                        </div>
                     </div>
                 </div>
                 @include('categories.pagination')
