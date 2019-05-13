@@ -29,3 +29,5 @@ Route::get('/subscribe/{id}', 'CoursesController@subscribe')->name('subscribeCou
 Route::get('/unsubscribe/{id}', 'CoursesController@unsubscribe')->name('unSubscribeCourse');
 
 Route::get('/category/{url}', 'CategoriesController@index')->name('CategoryPage');
+
+Route::get('/search/', 'SearchController@index')->name('SearchPage');
