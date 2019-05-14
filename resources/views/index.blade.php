@@ -15,8 +15,8 @@
                             @lang('lang.main.bannerMsg2')
                         </h2>
                         <div>
-                            <a href="#" class="primary-btn2 mb-3 mb-sm-0">@lang('lang.main.bannerBtnQuestion')</a>
-                            <a href="#" class="primary-btn ml-sm-3 ml-0">@lang('lang.main.bannerBtnCources')</a>
+                            <a href="{{route('coursesPage')}}" class="primary-btn2 mb-3 mb-sm-0">@lang('lang.main.bannerBtnQuestion')</a>
+                            <a href="{{route('contact')}}" class="primary-btn ml-sm-3 ml-0">@lang('lang.main.bannerBtnCources')</a>
                         </div>
                     </div>
                 </div>
@@ -80,12 +80,17 @@
                             <div class="course_head " >
                                 <img class="img-fluid" src="{{asset('img/courses/' . $course->id . '/' . $course->img)}}" alt="{{$course->img}}" />
                             </div>
-                            <div class="course_content " style="text-align: center">
-                                <span class="tag mb-4 d-inline-block">{{$course->category->title}}</span>
+                            <div class="course_content" style="text-align: center">
+                                <a href="{{'/category/' . $course->category->url}}"><span class="tag mb-4 d-inline-block">{{$course->category->title}}</span></a>
+                                @if(!empty($coursesArray) && in_array($course->id, $coursesArray))
+                                    <span class="tag mb-4 d-inline-block" style="background-color: #fdc632; color: #ffffff">@lang('lang.courses.subscribeSpan')</span>
+                                @endif
                                 <h4 class="mb-3">
-                                    <a href="course-details.html">{{$course->title}}</a>
+                                    <a href="{{'/learn/' . $course->url}}">{{$course->title}}</a>
                                 </h4>
-                                {!! $course->description !!}
+                                <p>
+                                    {{ mb_substr($course->desc, 0, 100) . '...' }}
+                                </p>
                             </div>
                         </div>
                     @endforeach

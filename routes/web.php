@@ -30,4 +30,5 @@ Route::get('/unsubscribe/{id}', 'CoursesController@unsubscribe')->name('unSubscr
 
 Route::get('/category/{url}', 'CategoriesController@index')->name('CategoryPage');
 
-Route::get('/search/', 'SearchController@index')->name('SearchPage');
+Route::post('/search', 'SearchController@index')->name('SearchPage');
+Route::get('/search/author/{id}', 'SearchController@getAuthor')->name('getAuthor');

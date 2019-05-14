@@ -18,7 +18,6 @@ class LessonsController extends Controller
         $lesson->load('section');
         $lesson->section->load('course');
         $lesson->section->course->load('category');
-        $lesson->load('comments');
         $lessons = Lesson::query()
             ->where('section_id', $lesson->section->id)
             ->get();

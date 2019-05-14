@@ -38,7 +38,7 @@
             <div class="col-lg-4 right-contents">
                 <ul>
                     <li>
-                        <a class="justify-content-between d-flex" href="{{'/search?author=' . $author->name}}">
+                        <a class="justify-content-between d-flex" href="{{'/search/author/' . $author->id}}">
                             <p>@lang('lang.singleCourse.author')</p>
                             <span class="or">{{$author->name}}</span>
                         </a>

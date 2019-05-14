@@ -7,6 +7,8 @@ use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class SearchController extends Controller
 {
@@ -17,37 +19,55 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-        $lesson=null;
-        $users=null;
-        if($request -> get('author'))
-        {
-            $users=User::find($request->get('searchPhrase'))->get();
-        }
-        else
-        {
-            $lesson=Lesson::where('title', 'LIKE', '%'.$request->get('searchPhrase').'%')->get();
-
-            dd($lesson);
-            if($lesson)
-            {
+        $lessons = Lesson::where('title', 'LIKE', '%' . $request->get('title') . '%')->get();
+        if ($lessons) {
+            foreach ($lessons as $lesson) {
                 $lesson->load('section');
                 $lesson->section->load('course');
             }
-
         }
-        
+
         $data = [
-            'title' => $lesson->title,
+            'title' => 'Пошук',
             'breadCrumbs' => [
                 'Головна' => '/',
-                $lesson->section->course->title => '/learn/' . $lesson->section->course->url
             ],
             'menu' => $this->mainMenu,
             'categories'=> $this->categories,
-            'users'=>$users,
-            'lesson'=>$lesson
+            'lessons' => $lessons
         ];
 
         return view('search.index')->with($data);
+    }
+
+    public function getAuthor($id)
+    {
+        $author = User::find($id);
+        if ($author == false) {
+            return redirect()->back();
+        }
+        $courses = collect();
+        if (explode(',', $author->courses)) {
+            $courses = Course::query()
+                ->whereIn('id', explode(',', $author->courses))
+                ->with('category')
+                ->get();
+        }
+
+        if (Auth::check()) {
+            $coursesArray = explode(',', Auth::user()->courses);
+        }
+        $data = [
+            'title' => !$courses->isEmpty() ? 'Автор: ' . $author->name : 'Курсів не знайдено',
+            'breadCrumbs' => [
+                'Головна' => '/',
+            ],
+            'menu' => $this->mainMenu,
+            'categories'=> $this->categories,
+            'courses' => $courses,
+            'coursesArray' => isset($coursesArray) ? $coursesArray : '',
+        ];
+
+        return view('search.author.index')->with($data);
     }
 }

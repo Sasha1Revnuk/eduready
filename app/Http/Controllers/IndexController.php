@@ -9,6 +9,7 @@ use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Config;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -24,8 +25,8 @@ class IndexController extends Controller
     {
         $courses = Course::orderBy('created_at', 'desc')->take(config('settings.coursesOnPage'))->get();
         $courses->load('category');
-        foreach ($courses as $course) {
-            $course->description = mb_substr($course->description, 0, 100) . '...';
+        if (Auth::check()) {
+            $coursesArray = explode(',', Auth::user()->courses);
         }
         $feedbacks = Feedback::orderBy('created_at', 'desc')->take(config('settings.feedbacksOnPage'))->get();
         $feedbacks->load('course');
@@ -40,6 +41,7 @@ class IndexController extends Controller
             'events' => Event::all(),
             'feedbacks' => $feedbacks,
             'categories'=> $this->categories,
+            'coursesArray' => $coursesArray
         ];
 
         return view('index')->with($data);

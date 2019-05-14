@@ -26,12 +26,14 @@
     <div class="main_menu">
         <div class="search_input" id="search_input_box">
             <div class="container">
-                <form class="d-flex justify-content-between" method="" action="">
+                <form class="d-flex justify-content-between" method="post" action="{{route('SearchPage')}}">
+                    {{csrf_field()}}
                     <input
                             type="text"
                             class="form-control"
                             id="search_input"
                             placeholder="Search Here"
+                            name="title"
                     />
                     <button type="submit" class="btn"></button>
                     <span
