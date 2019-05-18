@@ -1,7 +1,7 @@
 <footer class="footer-area section_gap">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6 single-footer-widget">
+        <div class="row justify-content-around">
+            <div class="col-xs-6 single-footer-widget">
                 <h4>@lang('lang.footer.menu')</h4>
                 <ul>
                     @foreach($menu as $title => $url)
@@ -9,7 +9,7 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-6 single-footer-widget">
+            <div class="col-xs-6 single-footer-widget">
                 <h4>@lang('lang.footer.categories')</h4>
                 <ul>
                     @foreach($categories as $category)
@@ -17,7 +17,7 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-6 single-footer-widget">
+            <div class="col-xs-12 single-footer-widget">
                 <h4>@lang('lang.footer.address')</h4>
                 <ul>
                     <li><b>@lang('lang.footer.titleStreet'):</b> @lang('lang.footer.street')</li>
@@ -26,8 +26,6 @@
                     <li><b>@lang('lang.footer.titlePhone'):</b> @lang('lang.footer.phone')</li>
                 </ul>
             </div>
-
-
         </div>
         <div class="row footer-bottom d-flex justify-content-between">
             <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
