@@ -27,6 +27,8 @@ class IndexController extends Controller
         $courses->load('category');
         if (Auth::check()) {
             $coursesArray = explode(',', Auth::user()->courses);
+        } else {
+            $coursesArray = [];
         }
         $feedbacks = Feedback::orderBy('created_at', 'desc')->take(config('settings.feedbacksOnPage'))->get();
         $feedbacks->load('course');

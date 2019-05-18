@@ -11,11 +11,16 @@
 |
 */
 
-
-Auth::routes();
+Route::get('/regist', 'Auth\RegisterController@index')->name('registration');
+Route::get('/getAjaxFaculty', 'Auth\RegisterController@getAjaxFaculty')->name('getAjaxFaculty');
+Route::get('/getAjaxGroups', 'Auth\RegisterController@getAjaxGroups')->name('getAjaxGroups');
+Route::post('/regist', 'Auth\RegisterController@save')->name('saveUser');
 Route::get('/logout', function(){
    \Illuminate\Support\Facades\Auth::logout();
+   return redirect()->route('main');
 });
+
+Auth::routes();
 Route::get('/', 'IndexController@show')->name('main');
 Route::get('/about-us', 'AboutUsController@index')->name('aboutUs');
 

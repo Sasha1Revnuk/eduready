@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/register" class="nav-link" id="register">
+                <a href="/regist" class="nav-link" id="register">
                     <i class="ti-shift-right"></i>
                 </a>
             </li>
