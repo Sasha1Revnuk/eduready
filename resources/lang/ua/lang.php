@@ -69,5 +69,17 @@
         ],
         'search' => [
             'empty' => 'Пошук результатів не дав :)'
+        ],
+        'auth' => [
+            'email' => 'Email',
+            'name' => 'Ім\'я',
+            'surname' => 'Прізвище',
+            'password' => 'Пароль',
+            'password_confirmation' => 'Підтвердження пароля',
+            'faculty' => 'Факультет',
+            'specialisations' => 'Спеціальність',
+            'groups' => 'Група',
+            'submit' => 'Зареєструватись',
+            'teacher' => 'Викладач'
         ]
     ];

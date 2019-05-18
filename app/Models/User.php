@@ -30,6 +30,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class User extends Eloquent
 {
+    const ROLE_ADMIN = 1;
+    const ROLE_TEACHER = 2;
+    const ROLE_STUDENT = 3;
+
+    const STAUTS_ACTIVE = 1;
+    const STAUTS_UNACTIVE = 0;
 	protected $hidden = [
 		'password',
 		'remember_token'
@@ -41,7 +47,9 @@ class User extends Eloquent
 		'password',
 		'remember_token',
 		'courses',
-		'img'
+		'img',
+        'group_id',
+        'facult_id',
 	];
 
 	public function comments()
