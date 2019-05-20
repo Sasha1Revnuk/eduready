@@ -9,16 +9,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
         $user = Auth::user();
+        if($user->ready == 0) {
+            Session::put('FailedReady', 'Ваш аккаунт очікує активації!');
+            return redirect('/logout');
+        }
         $role = RoleUser::where('user_id', $user->id)->first();
         $data = [
             'title' => 'Головна',
-            'role' => $role
+            'role' => $role,
+            'userName' => explode(' ',$user->name)
         ];
         switch($role->role_id) {
             case \App\Models\User::ROLE_ADMIN :
@@ -39,6 +45,7 @@ class AdminController extends Controller
 
             break;
         };
+
         return view('admin.index.index')->with(['data' => $data]);
     }
 }

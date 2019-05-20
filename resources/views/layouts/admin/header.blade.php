@@ -66,7 +66,7 @@
         <!-- END Mobile Navigation -->
 
         <!-- Logo -->
-        <a href="index.html" class="navbar-brand"><img src="{{asset('admin/img/template/logo.png')}}" alt="logo"></a>
+        <a href="/" class="navbar-brand"><img src="{{asset('admin/img/template/logo.png')}}" alt="logo"></a>
 
         <!-- Loading Indicator, Used for demostrating how loading of widgets could happen, check main.js - uiDemo() -->
         <div id="loading" class="pull-left"><i class="fa fa-certificate fa-spin"></i></div>

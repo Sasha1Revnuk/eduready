@@ -6,8 +6,8 @@
                 <label class="control-label col-md-2" for="example-select-multiple">Статус</label>
                 <div class="col-md-2">
                     <select id="example-select-multiple" name="status[]" class="form-control" multiple>
-                        <option value="1" {{in_array(1, request()->get('status')) ? 'selected' : ''}}>Активний</option>
-                        <option value="0" {{in_array(0, request()->get('status')) ? 'selected' : ''}}>Очікування підтвердення</option>
+                        <option value="1" @if(request()->get('status')){{ in_array(1, request()->get('status')) ? 'selected' : '' }} @endif>Активний</option>
+                        <option value="0" @if(request()->get('status')){{in_array(0, request()->get('status')) ? 'selected' : ''}} @endif>Очікування підтвердення</option>
                     </select>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         @if($man->ready == 0)
                         <a href="{{'/adm/user/active/' . $man->id}}" data-toggle="tooltip" title="Підтвердити" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                         @endif
-                        <a href="{{'/adm/user/delete/' . $man->id}}" data-toggle="tooltip" title="Видалити" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                        <a href="{{'/adm/user/delete/' . $man->id}}" {{\Illuminate\Support\Facades\Auth::user()->id == $man->id ? 'disabled' : ''}} data-toggle="tooltip" title="Видалити" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                     </div>
                 </td>
             </tr>
