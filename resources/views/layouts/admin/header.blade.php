@@ -85,6 +85,10 @@
                     <li class="divider"></li>
                     <li>
                         <!-- Modal div is at the bottom of the page before including javascript code -->
+                        <a href="#modal-user-password" role="button" data-toggle="modal"><i class="fa fa-cogs"></i> Change Password</a>
+                    </li>
+                    <li>
+                        <!-- Modal div is at the bottom of the page before including javascript code -->
                         <a href="#modal-user-settings" role="button" data-toggle="modal"><i class="fa fa-user"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
