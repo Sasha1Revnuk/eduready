@@ -26,7 +26,17 @@
             <div class="modal-body">
 
                     <!-- First Tab -->
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{'/adm/user/change-password/' . \Illuminate\Support\Facades\Auth::user()->id}}" method="post">
+                            {{csrf_field()}}
+                            @if($errors->any())
+                                @foreach($errors->all() as $error)
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Error</strong> {{$error}}
+                                    </div>
+                                @endforeach
+                            @endif
+
                             <div class="form-group">
                                 <label class="control-label col-md-3">{{'Ім\'я'}}</label>
                                 <div class="col-md-9">
@@ -43,7 +53,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="example-user-newpass">Підтвердіть пароль</label>
                                 <div class="col-md-9">
-                                    <input type="password" id="example-user-newpass" name="confirm_password" class="form-control">
+                                    <input type="password" id="example-user-newpass" name="password_confirmation" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,25 +94,26 @@
             <div class="modal-body">
 
                 <!-- Second Tab -->
-                <form class="form-horizontal">
+                <form  class="form-horizontal" action="{{'/adm/user/change-profile/' . \Illuminate\Support\Facades\Auth::user()->id}}" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
                     <div class="form-group">
                         <div class="col-md-3">
-                            <img src="{{asset('admin/img/placeholders/image_dark_120x120.png')}}" alt="image" class="img-responsive push">
+                            <img src="{{asset('img/users/' . \Illuminate\Support\Facades\Auth::user()->id . '/' . \Illuminate\Support\Facades\Auth::user()->img)}}" alt="image" class="img-responsive push">
                         </div>
                         <div class="col-md-9">
                                 <div class="fallback">
-                                    <input name="file" type="file">
+                                    <input type="file" name="file">
                                     <h4 class="page-header-sub">Персональні дані</h4>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="example-user-firstname">Ім'я</label>
+                                        <label class="control-label col-md-3" for="name">Ім'я</label>
                                         <div class="col-md-9">
                                             <input type="text" id="example-user-firstname" name="name" class="form-control" value="{{$data['userName'][0]}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="example-user-lastname">Surname</label>
+                                        <label class="control-label col-md-3" for="surname">Surname</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="example-user-lastname" name="example-user-lastname" class="form-control" value="{{$data['userName'][1]}}">
+                                            <input type="text" id="example-user-lastname" name="surname" class="form-control" value="{{$data['userName'][1]}}">
                                         </div>
                                     </div>
                                 </div>

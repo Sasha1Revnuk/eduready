@@ -9,6 +9,7 @@ use App\Models\Specialisation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,12 +64,12 @@ class RegisterController extends Controller
         }
         $user->ready = 0;
         $user->save();
-
+        File::makeDirectory(public_path() . '/img/users/' . $user->id);
+        File::copy(public_path() . '/img/users/' . 'user.jpg', public_path() . '/img/users/' . $user->id . '/user.jpg');
         $newRole = new RoleUser();
         $newRole->user_id = $user->id;
         $newRole->role_id = User::ROLE_STUDENT;;
         $newRole->save();
-
         return redirect()->route('main');
     }
 

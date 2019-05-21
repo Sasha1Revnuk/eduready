@@ -80,7 +80,7 @@
 
             <!-- User Menu -->
             <li class="dropdown pull-right dropdown-user">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('admin/img/template/avatar.png')}}" alt="avatar"> <b class="caret"></b></a>
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/users/' . \Illuminate\Support\Facades\Auth::user()->id . '/' . \Illuminate\Support\Facades\Auth::user()->img)}}" alt="avatar" width="30px" height="30px"> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li class="divider"></li>
                     <li>

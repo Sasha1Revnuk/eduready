@@ -44,6 +44,8 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('/delete/{id}', 'Admin\UserController@delete')->name('delete-user');
         Route::get('/active/{id}', 'Admin\UserController@active')->name('active-user');
+        Route::post('/change-password/{id}', 'Admin\UserController@changePassword')->name('change-password');
+        Route::post('/change-profile/{id}', 'Admin\UserController@changeProfile')->name('change-profile');
 
     });
 

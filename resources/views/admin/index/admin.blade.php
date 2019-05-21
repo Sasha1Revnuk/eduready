@@ -1,4 +1,16 @@
 <div id="page-content">
+    @if($value = \Illuminate\Support\Facades\Session::pull('PasswordChange'))
+        <div class="alert alert-success alert-dismissible" style="z-index: 9999">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{$value}}
+        </div>
+    @endif
+        @if($value = \Illuminate\Support\Facades\Session::pull('ProfileChange'))
+            <div class="alert alert-success alert-dismissible" style="z-index: 9999">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{$value}}
+            </div>
+        @endif
     <h3 class="page-header">Користувачі</h3>
     <form action="{{route('main-admin')}}" method="get" class="form-horizontal form-box">
         <div class="form-box-content">
