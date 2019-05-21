@@ -21,9 +21,12 @@ class Controller extends BaseController
     public function renderMainMenu()
     {
         $categories = Category::all();
+        $categories->load('courses');
         $cat = [];
         foreach ($categories as $category) {
-            $cat[$category['url']] = $category['title'];
+           if ($category->courses->count() > 0) {
+               $cat[$category['url']] = $category['title'];
+           }
         }
 
         $mainMenu = [
@@ -38,6 +41,13 @@ class Controller extends BaseController
     public function getCategories()
     {
         $categories = Category::orderBy('created_at')->take(5)->get();
-        return $categories;
+        $notEmptyCategories = collect();
+        foreach ($categories as $category) {
+            $category->load('courses');
+            if ($category->courses->count() > 0) {
+                $notEmptyCategories->push($category);
+            }
+        }
+        return $notEmptyCategories;
     }
 }
