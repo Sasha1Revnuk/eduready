@@ -2,6 +2,12 @@
 <!--================ End Header Menu Area =================-->
 
 <!--================ Start Home Banner Area =================-->
+@if($value = \Illuminate\Support\Facades\Session::pull('FailedReady'))
+    <div class="alert alert-danger alert-dismissible" style="z-index: 9999">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{$value}}
+    </div>
+@endif
 <section class="home_banner_area">
     <div class="banner_inner">
         <div class="container">

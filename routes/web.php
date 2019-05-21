@@ -37,3 +37,14 @@ Route::get('/category/{url}', 'CategoriesController@index')->name('CategoryPage'
 
 Route::post('/search', 'SearchController@index')->name('SearchPage');
 Route::get('/search/author/{id}', 'SearchController@getAuthor')->name('getAuthor');
+
+Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
+        Route::get('/', 'Admin\AdminController@index')->name('main-admin');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/delete/{id}', 'Admin\UserController@delete')->name('delete-user');
+        Route::get('/active/{id}', 'Admin\UserController@active')->name('active-user');
+
+    });
+
+});

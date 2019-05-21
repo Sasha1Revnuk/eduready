@@ -52,10 +52,10 @@ class User extends Eloquent
         'facult_id',
 	];
 
-	public function comments()
-	{
-		return $this->hasMany(\App\Models\Comment::class);
-	}
+//	public function comments()
+//	{
+//		return $this->hasMany(\App\Models\Comment::class);
+//	}
 
 	public function feedback()
 	{

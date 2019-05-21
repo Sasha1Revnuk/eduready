@@ -25,7 +25,7 @@
         </li>
             @if(\Illuminate\Support\Facades\Auth::check())
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link" id="admin">
+                    <a href="/adm" class="nav-link" id="admin">
                         {{Auth::user()->name}}
                     </a>
                 </li>

@@ -59,8 +59,9 @@ class RegisterController extends Controller
             $user->group_id = $data['groups'];
         } else {
             $user->facult_id = $data['faculty'];
-            $user->ready = 0;
+
         }
+        $user->ready = 0;
         $user->save();
 
         $newRole = new RoleUser();
