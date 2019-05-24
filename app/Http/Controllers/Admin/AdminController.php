@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
+use App\Models\Course;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\User;
@@ -43,6 +45,24 @@ class AdminController extends Controller
 
                 $data['users'] = $data['users']->get();
 
+            break;
+
+            case User::ROLE_TEACHER:
+                $data['courses'] = Course::query()
+                    ->with('category')
+                    ->where('creater_id', Auth::user()->id)
+                    ->orderBy('created_at', 'desc');
+
+
+                if($request->get('name')) {
+                    $data['courses']->where('title', $request->get('name'));
+                }
+                if($request->get('category')) {
+                    $data['courses']->where('category_id', $request->get('category'));
+                }
+
+                $data['courses'] = $data['courses']->get();
+                $data['categories'] = Category::all();
             break;
         };
 

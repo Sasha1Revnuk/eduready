@@ -59,4 +59,7 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
 
     });
 
+    Route::group(['prefix' => 'courses'], function () {
+        Route::get('/', 'Admin\CoursesController@index')->name('courses');
+    });
 });

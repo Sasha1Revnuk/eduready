@@ -68,7 +68,11 @@ class RegisterController extends Controller
         File::copy(public_path() . '/img/users/' . 'user.jpg', public_path() . '/img/users/' . $user->id . '/user.jpg');
         $newRole = new RoleUser();
         $newRole->user_id = $user->id;
-        $newRole->role_id = User::ROLE_STUDENT;;
+        if (isset($data['teacher'])) {
+            $newRole->role_id = User::ROLE_TEACHER;
+        } else {
+            $newRole->role_id = User::ROLE_STUDENT;
+        }
         $newRole->save();
         return redirect()->route('main');
     }
