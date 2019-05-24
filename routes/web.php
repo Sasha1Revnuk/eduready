@@ -49,4 +49,14 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
 
     });
 
+    Route::group(['prefix' => 'categories'], function () {
+        Route::get('/', 'Admin\CategoriesController@index')->name('categories');
+        Route::get('/add', 'Admin\CategoriesController@add')->name('addCategories');
+        Route::get('/edit/{id}', 'Admin\CategoriesController@edit')->name('editCategories');
+        Route::get('/delete/{id}', 'Admin\CategoriesController@delete')->name('deleteCategories');
+        Route::post('/save', 'Admin\CategoriesController@save')->name('category-save');
+        Route::post('/update', 'Admin\CategoriesController@update')->name('category-update');
+
+    });
+
 });

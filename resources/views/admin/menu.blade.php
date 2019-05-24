@@ -1,8 +1,9 @@
 <nav id="primary-nav">
     <ul>
-        <li>
-            <a href="{{route('main-admin')}}" class="{{Route::currentRouteName() == 'main-admin' ? 'active' : ''}}"><i class="fa fa-fire"></i>Main</a>
-        </li>
+        <li><a href="{{route('main-admin')}}" class="{{Route::currentRouteName() == 'main-admin' ? 'active' : ''}}"><i class="fa fa-fire"></i>Головна</a></li>
+        @if($data['role']->role_id == \App\Models\User::ROLE_ADMIN)
+            <li><a href="{{route('categories')}}" class="{{Route::currentRouteName() == 'categories' ? 'active' : ''}}"><i class="fa fa-fire"></i>Категорії</a></li>
+        @endif
         {{--<li>--}}
             {{--<a href="page_ui_elements.html"><i class="fa fa-glass"></i>UI Elements</a>--}}
         {{--</li>--}}

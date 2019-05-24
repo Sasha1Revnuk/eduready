@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title></title>
+    <title>{{$data['title']}}</title>
 
 
     <meta name="author" content="pixelcave">
