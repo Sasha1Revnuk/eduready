@@ -155,6 +155,7 @@
 <!-- Jquery plugins and custom javascript code -->
 <script src="{{asset('/admin/js/plugins.js')}}"></script>
 <script src="{{asset('/admin/js/main.js')}}"></script>
+<script src="{{asset('/admin/js/ckeditor/ckeditor.js')}}"></script>
 <!-- Javascript code only for this page -->
 </body>
 </html>

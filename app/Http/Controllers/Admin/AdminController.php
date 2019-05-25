@@ -23,6 +23,9 @@ class AdminController extends Controller
             return redirect('/logout');
         }
         $role = RoleUser::where('user_id', $user->id)->first();
+        if ($role->role_id != User::ROLE_TEACHER) {
+            return redirect()->back();
+        }
         $data = [
             'title' => 'Головна',
             'role' => $role,
@@ -62,7 +65,6 @@ class AdminController extends Controller
                 }
 
                 $data['courses'] = $data['courses']->get();
-                $data['categories'] = Category::all();
             break;
         };
 

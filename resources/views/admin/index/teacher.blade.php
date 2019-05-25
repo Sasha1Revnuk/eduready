@@ -28,11 +28,10 @@
                         <div class="col-md-4">
                             <label>Категорія:</label>
                             <select id="example-select" name="category" >
-                                <option>--</option>
-                                <option>css</option>
-                                <option>javascript</option>
-                                <option>php</option>
-                                <option>mysql</option>
+                                <option value="0">--</option>
+                                @foreach(\App\Models\Category::all() as $category)
+                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -44,7 +43,7 @@
                 </div>
             </form>
             <div class="col-md-4">
-                <a href="#" class="btn btn-success"><i class="fa fa-plus"></i> Додати курс</a>
+                <a href="/adm/courses/add" class="btn btn-success"><i class="fa fa-plus"></i> Додати курс</a>
             </div>
             <!-- END Dropdown Options -->
 
@@ -64,13 +63,13 @@
             @endphp
                 <div class="col-md-6">
                     <div class="media media-hover push clearfix">
-                        <a href="#" class="pull-left">
-                            <img src="img/placeholders/image_dark_120x120.png" class="media-object" alt="Image">
+                        <a class="pull-left">
+                            <img src="{{'img/courses/' . $course->id . '/' . $course->img}}" class="media-object" style="max-width: 100%; width: 150px" alt="{{$course->img}}">
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading"><small><span class="label label-success"></span></small> <a href="" style="color: #000; text-decoration: none">Project #1</a> <small><span class="label label-warning">7-2013</span></small></h4>
-                            <a href="javascript:void(0)">http://example-link-1.com</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus.</p>
+                            <h4 class="media-heading"><small><span class="label label-success"></span></small> <a href="{{'/adm/courses/edit/' . $course->id}}" style="color: #000; text-decoration: none">{{$course->title}}</a> <small><span class="label label-warning">{{$course->category->title}}</span></small></h4>
+                            <a href="{{'/learn/' . $course->url}}">Подивитись на сайті</a>
+                            <p>{{ mb_substr($course->desc, 0, 100) . '...' }}</p>
                         </div>
                     </div>
                 </div>
