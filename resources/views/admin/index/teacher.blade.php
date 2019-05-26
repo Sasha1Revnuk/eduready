@@ -22,7 +22,7 @@
                     <div class="col-md-4 text-center">
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                <input type="text" id="example-input-typeahead" class="name form-control" placeholder="Назва курсу" >
+                                <input type="text" id="example-input-typeahead" class="form-control" name="name" placeholder="Назва курсу" >
                             </div>
                         </div>
                         <div class="row">
@@ -31,7 +31,11 @@
                                 <select class="form-control" id="example-select" name="category" >
                                     <option value="0">--</option>
                                     @foreach(\App\Models\Category::all() as $category)
-                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                        @if(request()->get('category'))
+                                            <option value="{{$category->id}}" {{request()->get('category') == $category->id ? 'selected' : ''}} >{{$category->title}}</option>
+                                        @else
+                                            <option value="{{$category->id}}" >{{$category->title}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -67,7 +71,7 @@
                             <img src="{{'img/courses/' . $course->id . '/' . $course->img}}" class="media-object" style="max-width: 100%; width: 150px" alt="{{$course->img}}">
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading"><small><span class="label label-success"></span></small> <a href="{{'/adm/courses/edit/' . $course->id}}" style="color: #000; text-decoration: none">{{$course->title}}</a> <small><span class="label label-warning">{{$course->category->title}}</span></small></h4>
+                            <h4 class="media-heading"><small><span class="label label-success"></span></small> <a href="{{'/adm/courses/edit?id=' . $course->id}}" style="color: #000; text-decoration: none">{{$course->title}}</a> <small><span class="label label-warning">{{$course->category->title}}</span></small></h4>
                             <a href="{{'/learn/' . $course->url}}">Подивитись на сайті</a>
                             <p>{{ mb_substr($course->desc, 0, 100) . '...' }}</p>
                         </div>

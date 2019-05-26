@@ -61,6 +61,8 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'courses'], function () {
         Route::get('/add', 'Admin\CoursesController@add')->name('addCourse');
-        Route::post('/save', 'Admin\CoursesController@add')->name('saveCourse');
+        Route::get('/edit', 'Admin\CoursesController@edit')->name('editCourse');
+        Route::get('/update', 'Admin\CoursesController@update')->name('updateCourse');
+        Route::post('/save', 'Admin\CoursesController@save')->name('saveCourse');
     });
 });
