@@ -15,39 +15,39 @@
 
         <!-- Search Results -->
         <div class="page-header page-header-top clearfix">
-
-            <!-- Dropdown Options -->
-            <form class="form-horizontal">
-                <div class="form-box-content">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <input type="text" id="example-input-typeahead" class="name" placeholder="Назва курсу" >
+            <h4 class="text-center">Мої курси</h4>
+            <div class="row form-horizontal">
+                <!-- Dropdown Options -->
+                <form class="form-horizontal">
+                    <div class="col-md-4 text-center">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <input type="text" id="example-input-typeahead" class="name form-control" placeholder="Назва курсу" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>Категорія:</label>
+                                <select class="form-control" id="example-select" name="category" >
+                                    <option value="0">--</option>
+                                    @foreach(\App\Models\Category::all() as $category)
+                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <button class="btn btn-success"><i class="fa fa-wrench"></i> Фільтр</button>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <a href="/adm/courses/add" class="btn btn-success"><i class="fa fa-plus"></i> Додати курс</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label>Категорія:</label>
-                            <select id="example-select" name="category" >
-                                <option value="0">--</option>
-                                @foreach(\App\Models\Category::all() as $category)
-                                    <option value="{{$category->id}}">{{$category->title}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <button class="btn btn-success"><i class="fa fa-wrench"></i> Фільтр</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="col-md-4">
-                <a href="/adm/courses/add" class="btn btn-success"><i class="fa fa-plus"></i> Додати курс</a>
+                </form>
+                <!-- END Dropdown Options -->
             </div>
-            <!-- END Dropdown Options -->
-
-            <h4 class="pull-left">Мої курси</h4>
         </div>
 
         <!-- Results -->
