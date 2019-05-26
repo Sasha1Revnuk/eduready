@@ -42,7 +42,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <button class="btn btn-success"><i class="fa fa-wrench"></i> Фільтр</button>
+                                <button class="btn btn-info"><i class="fa fa-filter"></i> Фільтр</button>
                             </div>
                             <div class="col-md-6 form-group">
                                 <a href="/adm/courses/add" class="btn btn-success"><i class="fa fa-plus"></i> Додати курс</a>
