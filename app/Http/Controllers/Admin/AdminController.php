@@ -58,7 +58,7 @@ class AdminController extends Controller
 
 
                 if($request->get('name')) {
-                    $data['courses']->where('title', 'like', $request->get('name'));
+                    $data['courses']->where('title', 'like', '%' . $request->get('name') . '%');
                 }
                 if($request->get('category')) {
                     $data['courses']->where('category_id', $request->get('category'));

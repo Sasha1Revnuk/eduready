@@ -129,4 +129,63 @@ class CoursesController extends Controller
 
         return redirect()->route('main-admin');
     }
+
+    public function confDelete(Request $request)
+    {
+        $data = [
+            'title' => 'Підтвердіть видалення курсу',
+            'role' => $this->role,
+            'userName' => explode(' ',$this->user->name),
+            'id' => $request->get('id')
+        ];
+
+        return view('admin.cources.confirm-delete')->with(['data' => $data]);
+    }
+
+    public function delete(Request $request)
+    {
+        if ($request->get('action') == 'false') {
+            return redirect('/adm/courses/edit?id=' . $request->get('id'));
+        }
+
+        $id = $request->get('id');
+
+        $cource = Course::find($id);
+        $courceName = $cource->title;
+        $cource->load('sections');
+        $cource->sections->load('lessons');
+        $cource->load('feedback');
+
+        foreach ($cource->feedback as $feedb) {
+            $feedb->delete();
+        }
+
+        foreach ($cource->sections  as $section) {
+            foreach ($section->lessons as $lesson) {
+                File::deleteDirectory(public_path() . '/img/lessons/' . $lesson->id);
+                $lesson->delete();
+            }
+            $section->delete();
+        }
+
+        File::deleteDirectory(public_path() . '/img/courses/' . $cource->id);
+        $cource->delete();
+
+        $users = User::query()
+            ->where('courses', 'like','%' . strval($id) . '%')
+            ->get();
+        foreach ($users as $user) {
+            $coursesArray = explode(',',$user->courses);
+            foreach ($coursesArray as $key => $value) {
+                if ($value == $id) {
+                    unset($coursesArray[$key]);
+                    break;
+                }
+            }
+            $user->courses = implode(',', $coursesArray);
+            $user->save();
+        }
+        Session::put('courceDelete', 'Курс ' . $courceName . ' успішно видалено!');
+        return redirect()->route('main-admin');
+    }
 }

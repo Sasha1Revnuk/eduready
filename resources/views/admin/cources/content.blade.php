@@ -13,12 +13,14 @@
             {{$value}}
         </div>
     @endif
+
+
 <!-- END Navigation info -->
 
     <!-- Search Results -->
     <div class="page-header page-header-top clearfix">
         <div class="row">
-            <h4 class="text-center">{{$data['cource']->title}} <a href="{{'/adm/courses/update?id=' . $data['cource']->id}}" class="btn btn-warning btn-xs"><i class="fa fa-wrench"></i></a> <a href="{{'/adm/courses/delete/' . $data['cource']->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></h4>
+            <h4 class="text-center">{{$data['cource']->title}} <a href="{{'/adm/courses/update?id=' . $data['cource']->id}}" class="btn btn-warning btn-xs"><i class="fa fa-wrench"></i></a> <a href="{{'/adm/courses/conf-delete?id=' . $data['cource']->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></h4>
         </div>
         <div class="row form-group">
             <div class="col-md-4">

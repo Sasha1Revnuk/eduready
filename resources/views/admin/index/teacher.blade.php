@@ -11,6 +11,12 @@
                 {{$value}}
             </div>
         @endif
+        @if($value = \Illuminate\Support\Facades\Session::pull('courceDelete'))
+            <div class="alert alert-success alert-dismissible" style="z-index: 9999">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{$value}}
+            </div>
+        @endif
         <!-- END Navigation info -->
 
         <!-- Search Results -->
