@@ -60,7 +60,12 @@
 
             <div class="form-group form-actions">
                 <div class="col-md-10 col-md-offset-2">
-                    <button class="btn btn-success"><i class="fa fa-floppy-o"></i> Зберегти</button>
+                    @if(isset( $data['course']))
+                        <a href="{{'/adm/courses/edit?id=' . $data['course']->id}}" class="btn btn-info"><i class="fa fa-backward"></i> Повернутись назад</a>
+                    @else
+                        <a href="{{route('main-admin')}}" class="btn btn-info"><i class="fa fa-backward"></i> Повернутись назад</a>
+                    @endif
+                        <button class="btn btn-success"><i class="fa fa-floppy-o"></i> Зберегти</button>
                 </div>
             </div>
         </div>

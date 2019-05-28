@@ -20,11 +20,12 @@
     <!-- Search Results -->
     <div class="page-header page-header-top clearfix">
         <div class="row">
-            <h4 class="text-center">Курс {{$data['cource']->title}} <a href="{{'/adm/courses/update?id=' . $data['cource']->id}}" class="btn btn-warning btn-xs"><i class="fa fa-wrench"></i></a> <a href="{{'/adm/courses/conf-delete?id=' . $data['cource']->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></h4>
+            <h4 class="text-center">Секція {{$data['section']->title}} <a href="{{'/adm/sections/update?id=' . $data['section']->id}}" class="btn btn-warning btn-xs"><i class="fa fa-wrench"></i></a> <a href="{{'/adm/sections/conf-delete?id=' . $data['section']->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></h4>
         </div>
         <div class="row form-group">
             <div class="col-md-4">
-                <a href="{{'/adm/sections/add?cource=' . $data['cource']->id}}" class="btn btn-success"><i class="fa fa-plus"></i> Додати секцію</a>
+                <a href="{{'/adm/courses/edit?id=' . $data['section']->course_id}}" class="btn btn-info"><i class="fa fa-backward"></i> Повернутись назад</a>
+                <a href="{{'/adm/lessons/add?section=' . $data['section']->id}}" class="btn btn-success"><i class="fa fa-plus"></i> Додати урок</a>
             </div>
         </div>
     </div>
@@ -32,14 +33,13 @@
             <thead>
             <tr>
                 <th class="text-center">#</th>
-                <th>Назва</th>
-            </tr>
+                <th>Назва</th></tr>
             </thead>
             <tbody>
-            @foreach($data['cource']->sections as $section)
+            @foreach($data['section']->lessons as $lesson)
             <tr>
-                <td class="text-center">{{$section->id}}</td>
-                <td><a href="{{'/adm/sections/edit?id=' . $section->id}}">{{$section->title}}</a></td>
+                <td class="text-center">{{$lesson->id}}</td>
+                <td><a href="{{'/adm/lessons/edit?id=' . $lesson->id}}">{{$lesson->title}}</a></td>
             </tr>
             @endforeach
             </tbody>

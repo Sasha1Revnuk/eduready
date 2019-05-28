@@ -67,4 +67,14 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::get('/conf-delete', 'Admin\CoursesController@confDelete')->name('confDeleteCourse');
         Route::post('/save', 'Admin\CoursesController@save')->name('saveCourse');
     });
+
+    Route::group(['prefix' => 'sections'], function () {
+        Route::get('/add', 'Admin\SectionsController@add')->name('addSection');
+        Route::get('/edit', 'Admin\SectionsController@edit')->name('editSection');
+        Route::get('/update', 'Admin\SectionsController@update')->name('updateSection');
+        Route::get('/conf-delete', 'Admin\SectionsController@confDelete')->name('confDeleteSection');
+        Route::get('/delete', 'Admin\SectionsController@delete')->name('deleteSection');
+        Route::post('/save', 'Admin\SectionsController@save')->name('saveSection');
+
+    });
 });
