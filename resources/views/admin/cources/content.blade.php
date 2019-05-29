@@ -28,21 +28,74 @@
             </div>
         </div>
     </div>
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th class="text-center">#</th>
-                <th>Назва</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($data['cource']->sections as $section)
-            <tr>
-                <td class="text-center">{{$section->id}}</td>
-                <td><a href="{{'/adm/sections/edit?id=' . $section->id}}">{{$section->title}}</a></td>
-            </tr>
-            @endforeach
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="dash-tile dash-tile-2x">
+                    <div class="dash-tile-header">
+                        <i class="fa fa-shopping-cart"></i> New Orders
+                    </div>
+                    <div class="dash-tile-content">
+                        <div class="dash-tile-content-inner-fluid">
+                            <table class="table table-striped" style="background-color: #fff;">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Назва</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($data['cource']->sections as $section)
+                                    <tr>
+                                        <td class="text-center">{{$section->id}}</td>
+                                        <td class="text-center"><a href="{{'/adm/sections/edit?id=' . $section->id}}">{{$section->title}}</a></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="dash-tile dash-tile-2x">
+                    <div class="dash-tile-header">
+                        <i class="fa fa-shopping-cart"></i> New Orders
+                    </div>
+                    <div class="dash-tile-content">
+                        <div class="dash-tile-content-inner-fluid">
+                            <table class="table table-striped" style="background-color: #fff;">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Ім’я</th>
+                                    <th class="text-center">Прізвище</th>
+                                    <th class="text-center">Пошта</th>
+                                    <th class="text-center">Група</th>
+                                    <th class="text-center">Спеціальність</th>
+                                    <th class="text-center">Факультет</th>
+                                    <th class="text-center">Фото</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($data['cource']->sections as $user)
+                                    <tr>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </div>
 @endsection
