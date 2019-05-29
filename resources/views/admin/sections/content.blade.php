@@ -13,7 +13,12 @@
             {{$value}}
         </div>
     @endif
-
+        @if($value = \Illuminate\Support\Facades\Session::pull('lessonDelete'))
+            <div class="alert alert-success alert-dismissible" style="z-index: 9999">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{$value}}
+            </div>
+    @endif
 
 <!-- END Navigation info -->
 
@@ -33,13 +38,18 @@
             <thead>
             <tr>
                 <th class="text-center">#</th>
-                <th>Назва</th></tr>
+                <th>Назва</th>
+                <th>Подивитись на головній</th>
+                <th>Видалити урок</th>
+            </tr>
             </thead>
             <tbody>
             @foreach($data['section']->lessons as $lesson)
             <tr>
                 <td class="text-center">{{$lesson->id}}</td>
                 <td><a href="{{'/adm/lessons/edit?id=' . $lesson->id}}">{{$lesson->title}}</a></td>
+                <td><a href="{{'/learn/' . $data['section']->course->category->title . '/' . $data['section']->course->title . '/' . $lesson->id}}">{{$lesson->title}}</a></td>
+                <td><a href="{{'/adm/lessons/conf-delete?id=' . $lesson->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></td>
             </tr>
             @endforeach
             </tbody>

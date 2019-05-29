@@ -43,7 +43,7 @@ class SectionsController extends Controller
     }
     public function edit(Request $request)
     {
-        $section = Section::find($request->get('id'));
+        $section = Section::with('course')->with('course.category')->find($request->get('id'));
         $data = [
             'section' => $section->load('lessons'),
             'title' => $section->title,

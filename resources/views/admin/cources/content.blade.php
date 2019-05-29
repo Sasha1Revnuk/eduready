@@ -32,7 +32,7 @@
             <div class="col-md-4">
                 <div class="dash-tile dash-tile-2x">
                     <div class="dash-tile-header">
-                        <i class="fa fa-shopping-cart"></i> New Orders
+                        <i class="fa fa-archive"></i> Секції
                     </div>
                     <div class="dash-tile-content">
                         <div class="dash-tile-content-inner-fluid">
@@ -59,7 +59,7 @@
             <div class="col-md-8">
                 <div class="dash-tile dash-tile-2x">
                     <div class="dash-tile-header">
-                        <i class="fa fa-shopping-cart"></i> New Orders
+                        <i class="fa fa-user"></i> Студенти курсу
                     </div>
                     <div class="dash-tile-content">
                         <div class="dash-tile-content-inner-fluid">

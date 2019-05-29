@@ -77,4 +77,13 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::post('/save', 'Admin\SectionsController@save')->name('saveSection');
 
     });
+    Route::group(['prefix' => 'lessons'], function () {
+        Route::get('/add', 'Admin\LessonsController@add')->name('addLesson');
+        Route::get('/edit', 'Admin\LessonsController@edit')->name('editLesson');
+        Route::get('/update', 'Admin\LessonsController@update')->name('updateLesson');
+        Route::get('/conf-delete', 'Admin\LessonsController@confDelete')->name('confDeleteLesson');
+        Route::get('/delete', 'Admin\LessonsController@delete')->name('deleteLesson');
+        Route::post('/save', 'Admin\LessonsController@save')->name('saveLesson');
+
+    });
 });
