@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Group;
 use App\Models\RoleUser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,13 +46,37 @@ class CoursesController extends Controller
     public function edit(Request $request)
     {
         $cource = Course::find($request->get('id'));
+        $users = User::query()
+         ->where('courses', 'like', '%' . $cource->id . '%');
+
+        if($request->get('group')) {
+            $users->where('group_id', $request->get('group'));
+        }
+
+        $users = $users->get();
+        $groups = collect();
+        $usersGroups = User::query()
+            ->where('courses', 'like', '%' . $cource->id . '%')->get();
+        foreach($usersGroups as $user) {
+            $dublicate = false;
+            foreach ($groups as $group) {
+                if(isset($group) && $group->id == $user->group_id ) {
+                    $dublicate = true;
+                    break;
+                }
+            }
+            if($dublicate == false && $user->group_id != 0) {
+                $groups->push(Group::find($user->group_id));
+            }
+        }
         $data = [
             'cource' => $cource->load('sections'),
             'title' => $cource->title,
             'role' => $this->role,
             'userName' => explode(' ',$this->user->name),
+            'users' => $users,
+            'groups' => $groups
         ];
-        //dd($data);
         return view('admin.cources.content')->with(['data' => $data]);
     }
 

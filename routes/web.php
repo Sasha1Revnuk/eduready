@@ -86,4 +86,11 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::post('/save', 'Admin\LessonsController@save')->name('saveLesson');
 
     });
+
+    Route::group(['prefix' => 'tests'], function () {
+        Route::get('/', 'Admin\TestsController@index')->name('tests');
+        Route::get('/add', 'Admin\TestsController@add')->name('testsAdd');
+        Route::get('/edit', 'Admin\TestsController@update')->name('testsEdit');
+        Route::post('/save', 'Admin\TestsController@save')->name('testsSave');
+    });
 });

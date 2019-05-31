@@ -63,12 +63,37 @@
                     </div>
                     <div class="dash-tile-content">
                         <div class="dash-tile-content-inner-fluid">
+                            <form class="form-horizontal" action="{{'/adm/courses/edit' }}" method="get">
+                                <div class="col-md-4 text-center">
+                                    <div class="row">
+                                        <input type="hidden" name="id" value="{{ $data['cource']->id }}">
+                                        <div class="col-md-12 form-group">
+                                            <label>Група:</label>
+                                            <select class="form-control" id="example-select" name="group" >
+                                                <option value="0">--</option>
+                                                @for($i = 0; $i < count($data['groups']); $i++)
+                                                    @if(request()->get('group'))
+                                                        <option value="{{$data['groups'][$i]->id}}" {{request()->get('group') == $data['groups'][$i]->id ? 'selected' : ''}} >{{ $data['groups'][$i]->title }}</option>
+                                                    @else
+                                                        <option value="{{$data['groups'][$i]->id}}" >{{$data['groups'][$i]->title}}</option>
+                                                    @endif
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <button class="btn btn-info"><i class="fa fa-filter"></i> Фільтр</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
                             <table class="table table-striped" style="background-color: #fff;">
                                 <thead>
                                 <tr>
                                     <th class="text-center">#</th>
-                                    <th class="text-center">Ім’я</th>
-                                    <th class="text-center">Прізвище</th>
+                                    <th class="text-center">Студент</th>
                                     <th class="text-center">Пошта</th>
                                     <th class="text-center">Група</th>
                                     <th class="text-center">Спеціальність</th>
@@ -77,16 +102,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data['cource']->sections as $user)
+                                @foreach($data['users'] as $user)
                                     <tr>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">{{$user->id}}</td>
+                                        <td class="text-center">{{$user->name}}</td>
+                                        <td class="text-center">{{$user->email}}</td>
+                                        @if($user->group_id != 0)
+                                        <td class="text-center">{{\App\Models\Group::find($user->group_id)->title}}</td>
+                                        <td class="text-center">{{\App\Models\Group::with('specialisation')->find($user->group_id)->specialisation->title}}</td>
+                                        <td class="text-center">{{\App\Models\Group::with('specialisation')->with('specialisation.faculty')->find($user->group_id)->specialisation->faculty->title}}</td>
+                                        <td class="text-center"><img src="{{asset('img/users/' . $user->id . '/' . $user->img)}}" width="80" height="80" /></td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
