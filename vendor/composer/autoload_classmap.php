@@ -21,6 +21,7 @@ return array(
     'CreateEvents' => $baseDir . '/database/migrations/2019_05_05_230256_createEvents.php',
     'CreateLessons' => $baseDir . '/database/migrations/2019_04_28_192223_create_lessons.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateQuestion' => $baseDir . '/database/migrations/2019_06_03_225631_createQuestion.php',
     'CreateSections' => $baseDir . '/database/migrations/2019_04_28_192003_create_sections.php',
     'CreateTests' => $baseDir . '/database/migrations/2019_05_31_224213_create-tests.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',

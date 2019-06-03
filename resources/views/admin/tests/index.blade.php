@@ -27,12 +27,41 @@
             <div class="row">
                 <h4 class="text-center">{{$data['title']}}</h4>
             </div>
-            <div class="row form-group">
-                <div class="col-md-4">
-                    <a href="{{route('tests')}}" class="btn btn-info"><i class="fa fa-backward"></i> Повернутись назад</a>
-                    <a href="{{'/adm/tests/add' }}" class="btn btn-success"><i class="fa fa-plus"></i> Додати тест</a>
+            <form class="form-horizontal">
+                <div class="col-md-4 text-center">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="text" id="example-input-typeahead" class="form-control" name="name" placeholder="Назва курсу" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label>Курс:</label>
+                            <select class="form-control" id="example-select" name="cource" >
+                                <option value="0">--</option>
+                                @foreach($data['cources'] as $cource)
+                                    @if(request()->get('cource'))
+                                        <option value="{{$cource->id}}" {{request()->get('cource') == $cource->id ? 'selected' : ''}} >{{$cource->title}}</option>
+                                    @else
+                                        <option value="{{$cource->id}}" >{{$cource->title}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <a href="{{route('tests')}}" class="btn btn-info"><i class="fa fa-backward"></i> Повернутись назад</a>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <button class="btn btn-info"><i class="fa fa-filter"></i> Фільтр</button>
+                        </div>
+                        <div class="col-md-2 form-group">
+                            <a href="{{'/adm/tests/add' }}" class="btn btn-success"><i class="fa fa-plus"></i> Додати тест</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <table class="table table-hover">
             <thead>

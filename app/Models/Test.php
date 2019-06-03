@@ -36,4 +36,9 @@ class Test extends Eloquent
 		'active',
 		'user_id'
 	];
+
+    public function questions()
+    {
+        return $this->hasMany(\App\Models\Question::class);
+    }
 }

@@ -19,7 +19,6 @@ Route::get('/logout', function(){
    \Illuminate\Support\Facades\Auth::logout();
    return redirect()->route('main');
 });
-
 Auth::routes();
 Route::get('/', 'IndexController@show')->name('main');
 Route::get('/about-us', 'AboutUsController@index')->name('aboutUs');
@@ -91,6 +90,9 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::get('/', 'Admin\TestsController@index')->name('tests');
         Route::get('/add', 'Admin\TestsController@add')->name('testsAdd');
         Route::get('/edit', 'Admin\TestsController@update')->name('testsEdit');
+        Route::get('/add-question', 'Admin\TestsController@addQuestion')->name('testsAddQuestion');
+        Route::post('/save-question', 'Admin\TestsController@questionsSave')->name('questionsSave');
+        Route::get('/edit-question', 'Admin\TestsController@questionsUpdate')->name('questionsUpdate');
         Route::post('/save', 'Admin\TestsController@save')->name('testsSave');
     });
 });
