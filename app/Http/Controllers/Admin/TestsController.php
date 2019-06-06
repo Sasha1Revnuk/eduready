@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Question;
 use App\Models\RoleUser;
@@ -66,7 +67,7 @@ class TestsController extends Controller
 
     public function update(Request $request)
     {
-        $test = Test::find($request->get('id'));
+        $test = Test::find($request->get('test_id'));
         $test->load('questions');
         $data = [
             'cources' => Course::where('creater_id', $this->user->id)->get(),
@@ -132,7 +133,7 @@ class TestsController extends Controller
         $data = [
             'test' => Test::find($request->get('test_id')),
             'title' => 'Редагування питання',
-            'question' => Question::find($request->get('id'))   ,
+            'question' => Question::with('answers')->find($request->get('id'))   ,
             'role' => $this->role,
             'userName' => explode(' ',$this->user->name),
             'action' => 'edit',
@@ -172,7 +173,196 @@ class TestsController extends Controller
             $question->update();
         }
 
-        return redirect('/adm/tests/edit?id=' . $request->get('test_id'));
+        return redirect('/adm/tests/edit?test_id=' . $request->get('test_id'));
     }
 
+    public function questionDelete(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+        $question = Question::with('test')->find($request->get('id'));
+        if ($question->test->user_id != $this->user->id) {
+            return redirect()->back();
+        }
+        $testId = $question->test->id;
+        $this->questionDeleteMethod($question);
+        return redirect('/adm/tests/edit?test_id=' . $testId);
+    }
+
+    public function questionDeleteMethod($question)
+    {
+        $question->load('answers');
+        foreach ($question->answers as $answer) {
+            $answer->delete();
+        }
+
+        $question->delete();
+
+    }
+
+    public function testDelete(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $test = Test::with('questions')->find($request->get('id'));
+        if ($test->user_id != $this->user->id) {
+            return redirect()->back();
+        }
+
+        foreach ($test->questions as $question) {
+            $this->questionDeleteMethod($question);
+        }
+
+        $test->delete();
+        return redirect()->route('tests');
+    }
+/////////////////////////////////////////////////////////////////////////////////////////
+    public function addAnswer(Request $request)
+    {
+        $data = [
+            'question' => Question::find($request->get('question_id')),
+            'title' => 'Додати відповідь',
+            'role' => $this->role,
+            'userName' => explode(' ',$this->user->name),
+            'action' => 'add'
+        ];
+
+        return view('admin.tests.answers.form')->with(['data' => $data]);
+    }
+
+    public function editAnswer(Request $request)
+    {
+        $data = [
+            'question' => Question::with('test')->find($request->get('question_id')),
+            'answer' => Answer::find($request->get('id')),
+            'countRight' => count(Answer::where('right', '<>', 0)->get()),
+            'title' => 'Редагувати відповідь',
+            'role' => $this->role,
+            'userName' => explode(' ',$this->user->name),
+            'action' => 'edit'
+        ];
+        //dd($data['answer']);
+        return view('admin.tests.answers.editForm')->with(['data' => $data]);
+    }
+
+    public function answersUpdate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'question_id' => 'required',
+            'id' => 'required'
+        ]);
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $answer = Answer::find($request->get('id'));
+        $answer->title = $request->get('title');
+        if ( $request->get('right') ) {
+            $answer->right = 1;
+        } else {
+            $answer->right = 0;
+
+        }
+        $answer->update();
+        $question = Question::with('answers')->find($request->get('question_id'));
+        $right = 0;
+        foreach ($question->answers as $answer) {
+            if ($answer->right > 0) {
+                $right ++;
+            }
+        }
+
+        switch ($right) {
+            case 1:
+                $mark = 1;
+                break;
+            case 2:
+                $mark = 0.5;
+                break;
+            case 3:
+                $mark = 0.33;
+                break;
+            case 4:
+                $mark = 0.25;
+                break;
+            default :
+                $mark = 1;
+        }
+
+        foreach ($question->answers as $answerQuestion) {
+            $answer = Answer::find($answerQuestion->id);
+            if ($answer->right > 0) {
+                $answer->right = $mark;
+                $answer->update();
+            }
+        }
+
+        return redirect('/adm/tests/edit-question?id=' . $question->id . '&test_id=' . $question->test->id );
+
+    }
+
+    public function answerSave(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'right' => 'required',
+            'question_id' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        switch (count($request->get('right'))) {
+            case 1:
+                $mark = 1;
+                break;
+            case 2:
+                $mark = 0.5;
+                break;
+            case 3:
+                $mark = 0.33;
+                break;
+            case 4:
+                $mark = 0.25;
+                break;
+            default :
+                $mark = 1;
+        }
+        $question = Question::with('test')->find($request->get('question_id'));
+        for ($i = 0; $i < 4; $i++) {
+            $answer = new Answer();
+            $answer->title = $request->get('title')[$i];
+            $answer->right = 0;
+            $answer->question_id = $request->get('question_id');
+            $answer->save();
+            $answerId[] = $answer->id;
+        }
+        $i = 0;
+        foreach ($answerId as $answerr) {
+            $answer = Answer::find($answerr);
+            foreach ($request->get('right') as $right) {
+                if ($right == $i) {
+                    $answer->right = $mark;
+                    break;
+                }
+            }
+            $answer->update();
+            $i++;
+        }
+        return redirect('/adm/tests/edit-question?id=' . $question->id . '&test_id=' . $question->test->id );
+    }
 }

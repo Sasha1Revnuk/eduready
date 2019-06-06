@@ -93,6 +93,15 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::get('/add-question', 'Admin\TestsController@addQuestion')->name('testsAddQuestion');
         Route::post('/save-question', 'Admin\TestsController@questionsSave')->name('questionsSave');
         Route::get('/edit-question', 'Admin\TestsController@questionsUpdate')->name('questionsUpdate');
+        Route::get('/delete-question', 'Admin\TestsController@questionDelete')->name('questionDelete');
+        Route::get('/delete', 'Admin\TestsController@testDelete')->name('testDelete');
         Route::post('/save', 'Admin\TestsController@save')->name('testsSave');
+
+        Route::get('/add-answer', 'Admin\TestsController@addAnswer')->name('testsAddAnswer');
+        Route::get('/edit-answer', 'Admin\TestsController@editAnswer')->name('testsEditAnswer');
+        Route::post('/update-answer', 'Admin\TestsController@answersUpdate')->name('answersUpdate');
+        Route::post('/save-answer', 'Admin\TestsController@answerSave')->name('answersSave');
+
+
     });
 });

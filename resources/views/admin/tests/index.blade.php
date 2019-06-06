@@ -77,7 +77,7 @@
                 @foreach($data['tests'] as $test)
                     <tr>
                         <td class="text-center">{{$test->id}}</td>
-                        <td><a href="{{'/adm/tests/edit?id=' . $test->id}}">{{$test->title}}</a></td>
+                        <td><a href="{{'/adm/tests/edit?test_id=' . $test->id}}">{{$test->title}}</a></td>
                         <td>{{\App\Models\Course::find($test->cource_id)->title}}</td>
                         <td>{{$test->active == 1 ? 'Активний' : 'Не активний'}}</td>
                         <td><a href="{{'/adm/tests/delete?id=' . $test->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></td>

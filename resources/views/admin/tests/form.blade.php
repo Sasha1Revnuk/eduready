@@ -42,7 +42,7 @@
                         <label class="control-label col-md-2">Switches</label>
                         <div class="col-md-10">
                             <label class="switch switch-info"><input type="checkbox" name="active" {{$data['test']->active == 1 ? 'checked' : ''}}><span></span></label>
-                            <span class="help-block">Checked</span>
+                            <span class="help-block">Включити/Виключити</span>
                         </div>
                     </div>
                 @endif
@@ -71,7 +71,7 @@
                     <tr>
                         <td class="text-center">{{$question->id}}</td>
                         <td><a href="{{'/adm/tests/edit-question?id=' . $question->id . '&test_id=' . $data['test']->id}}">{{$question->title}}</a></td>
-                        <td><a href="{{'/adm/tests/delete?id=' . $question->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></td>
+                        <td><a href="{{'/adm/tests/delete-question?id=' . $question->id}}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></a></td>
                     </tr>
                 @endforeach
                 </tbody>

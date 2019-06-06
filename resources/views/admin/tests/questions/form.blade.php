@@ -27,13 +27,36 @@
                 <div class="form-group form-actions">
                     <div class="col-md-10 col-md-offset-2">
                             <a href="{{'/adm/tests/edit?test_id=' . $data['test']->id}}" class="btn btn-info"><i class="fa fa-backward"></i> Повернутись назад</a>
-                        @if(isset($data['question']))
-                            <a href="{{'/adm/tests/add-answer?id=' . $data['question']->id}}" class="btn btn-warning"><i class="fa fa-question"></i> Додати відповідь</a>
+                        @if(isset($data['question']) && count($data['question']->answers) <= 0)
+                            <a href="{{'/adm/tests/add-answer?question_id=' . $data['question']->id}}" class="btn btn-warning"><i class="fa fa-question"></i> Додати відповідь</a>
                         @endif
                             <button class="btn btn-success"><i class="fa fa-floppy-o"></i> Зберегти</button>
                     </div>
                 </div>
             </div>
         </form>
+
+            @if(isset($data['question']) && count($data['question']->answers) > 0)
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th>Відповідь</th>
+                        <th>Кількість балів</th>
+                        <th>Редагувати</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($data['question']->answers as $answer)
+                        <tr>
+                            <td class="text-center">{{$answer->id}}</td>
+                            <td>{{$answer->title}}</td>
+                            <td>{{$answer->right}}</td>
+                            <td><a href="{{'/adm/tests/edit-answer?id=' . $answer->id . '&question_id=' . $data['question']->id}}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
     </div>
 @endsection

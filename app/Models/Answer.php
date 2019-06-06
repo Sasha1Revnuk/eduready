@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 03 Jun 2019 22:59:07 +0300.
+ * Date: Tue, 04 Jun 2019 22:27:46 +0300.
  */
 
 namespace App\Models;
@@ -10,32 +10,35 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Question
+ * Class Answer
  * 
  * @property int $id
  * @property string $title
- * @property int $test_id
+ * @property float $right
+ * @property int $question_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
- * @property \App\Models\Test $test
+ * @property \App\Models\Question $question
  *
  * @package App\Models
  */
-class Question extends Eloquent
+class Answer extends Eloquent
 {
 	protected $casts = [
-		'test_id' => 'int'
+		'right' => 'float',
+		'question_id' => 'int'
 	];
 
 	protected $fillable = [
 		'title',
-		'test_id'
+		'right',
+		'question_id'
 	];
 
-	public function test()
+	public function question()
 	{
-		return $this->belongsTo(\App\Models\Test::class);
+		return $this->belongsTo(\App\Models\Question::class);
 	}
 
     public function answers()

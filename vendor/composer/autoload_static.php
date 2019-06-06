@@ -338,6 +338,7 @@ class ComposerStaticInit5d98a29d6cd2c30eda18fbac28b3b153
         'AddUrlToCourses' => __DIR__ . '/../..' . '/database/migrations/2019_05_08_234211_addUrlToCourses.php',
         'AddUserReady' => __DIR__ . '/../..' . '/database/migrations/2019_05_18_184307_addUserReady.php',
         'Advantages' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_201611_advantages.php',
+        'CreateAnswer' => __DIR__ . '/../..' . '/database/migrations/2019_06_04_222401_create-answer.php',
         'CreateCategories' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_192001_create_categories.php',
         'CreateComments' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_192537_create_comments.php',
         'CreateCources' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_192002_create_cources.php',

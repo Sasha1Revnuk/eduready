@@ -15,6 +15,7 @@ return array(
     'AddUrlToCourses' => $baseDir . '/database/migrations/2019_05_08_234211_addUrlToCourses.php',
     'AddUserReady' => $baseDir . '/database/migrations/2019_05_18_184307_addUserReady.php',
     'Advantages' => $baseDir . '/database/migrations/2019_04_28_201611_advantages.php',
+    'CreateAnswer' => $baseDir . '/database/migrations/2019_06_04_222401_create-answer.php',
     'CreateCategories' => $baseDir . '/database/migrations/2019_04_28_192001_create_categories.php',
     'CreateComments' => $baseDir . '/database/migrations/2019_04_28_192537_create_comments.php',
     'CreateCources' => $baseDir . '/database/migrations/2019_04_28_192002_create_cources.php',
