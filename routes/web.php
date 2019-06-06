@@ -102,6 +102,6 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::post('/update-answer', 'Admin\TestsController@answersUpdate')->name('answersUpdate');
         Route::post('/save-answer', 'Admin\TestsController@answerSave')->name('answersSave');
 
-
+        Route::get('/student', 'Admin\TestsController@show')->name('student-tests');
     });
 });

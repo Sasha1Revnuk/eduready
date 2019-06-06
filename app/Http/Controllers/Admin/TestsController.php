@@ -365,4 +365,34 @@ class TestsController extends Controller
         }
         return redirect('/adm/tests/edit-question?id=' . $question->id . '&test_id=' . $question->test->id );
     }
+    /////////////////////////////////////////////////////////////////////////////////
+
+    public function show(Request $request)
+    {
+        $cources = Course::query()
+            ->whereIn('id',  explode(',', Auth::user()->courses));
+        if ($request->get('cource')) {
+            $cources->where('id', $request->get('cource'));
+        }
+        $cources = $cources->get();
+
+
+        $testsCollection = collect();
+        foreach ($cources as $cource) {
+            $test = Test::query()
+                ->with('questions')
+                ->where('cource_id', $cource->id)
+                ->where('active', 1)
+                ->get();
+            $testsCollection->push($test);
+        }
+        $data = [
+            'title' => 'Тести',
+            'role' => $this->role,
+            'userName' => explode(' ',$this->user->name),
+            'tests' => $testsCollection,
+            'cources' => $cources
+        ];
+        return view('admin.tests.student')->with(['data' => $data]);
+    }
 }
