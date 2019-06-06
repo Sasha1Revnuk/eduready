@@ -21,8 +21,8 @@
                             @lang('lang.main.bannerMsg2')
                         </h2>
                         <div>
-                            <a href="{{route('coursesPage')}}" class="primary-btn2 mb-3 mb-sm-0">@lang('lang.main.bannerBtnQuestion')</a>
-                            <a href="{{route('contact')}}" class="primary-btn ml-sm-3 ml-0">@lang('lang.main.bannerBtnCources')</a>
+                            <a href="{{route('coursesPage')}}" class="primary-btn2 mb-3 mb-sm-0">@lang('lang.main.bannerBtnCources')</a>
+                            <a href="{{route('contact')}}" class="primary-btn ml-sm-3 ml-0">@lang('lang.main.bannerBtnQuestion')</a>
                         </div>
                     </div>
                 </div>
