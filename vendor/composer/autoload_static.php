@@ -346,6 +346,7 @@ class ComposerStaticInit5d98a29d6cd2c30eda18fbac28b3b153
         'CreateLessons' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_192223_create_lessons.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateQuestion' => __DIR__ . '/../..' . '/database/migrations/2019_06_03_225631_createQuestion.php',
+        'CreateResultTable' => __DIR__ . '/../..' . '/database/migrations/2019_06_07_215117_create_result_table.php',
         'CreateSections' => __DIR__ . '/../..' . '/database/migrations/2019_04_28_192003_create_sections.php',
         'CreateTests' => __DIR__ . '/../..' . '/database/migrations/2019_05_31_224213_create-tests.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',

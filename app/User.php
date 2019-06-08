@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function test_results()
+    {
+        return $this->hasMany(\App\Models\TestResult::class);
+    }
 }

@@ -39,7 +39,7 @@
                             <label>Курс:</label>
                             <select class="form-control" id="example-select" name="cource" >
                                 <option value="0">--</option>
-                                @foreach($data['cources'] as $cource)
+                                @foreach($data['courceFilter'] as $cource)
                                     @if(request()->get('cource'))
                                         <option value="{{$cource->id}}" {{request()->get('cource') == $cource->id ? 'selected' : ''}} >{{$cource->title}}</option>
                                     @else
@@ -68,19 +68,30 @@
             </tr>
             </thead>
             <tbody>
-            @php
-               // dd($data['tests']);
-            @endphp
-                @foreach($data['tests'] as $testCollection)
-                    @foreach($testCollection as $test)
-                        <tr>
-                            <td class="text-center">{{$test->id}}</td>
-                            <td><a href="{{'/adm/tests/info?test_id=' . $test->id}}">{{$test->title}}</a></td>
-                            <td>{{\App\Models\Course::find($test->cource_id)->title}}</td>
-                            <td>Доробити функціонал... Посилання також не працює</td>
-                        </tr>
+                @if(count($data['tests']) > 0)
+                    @foreach($data['tests'] as $testCollection)
+                        @foreach($testCollection as $test)
+                            <tr>
+                                @php
+                                    $mark = \App\Models\TestResult::where('test_id', $test->id)->where('user_id', $data['user']->id)->first();
+                                @endphp
+                                <td class="text-center">{{$test->id}}</td>
+                                @if($mark)
+                                    <td>{{$test->title}}</td>
+                                @else
+                                   <td><a href="{{'/adm/tests/info?test_id=' . $test->id}}">{{$test->title}}</a></td>
+
+                                @endif
+                                <td>{{\App\Models\Course::find($test->cource_id)->title}}</td>
+                                @if($mark)
+                                <td>{{$mark->mark}}</td>
+                                @else
+                                    <td>0</td>
+                                @endif
+                            </tr>
+                        @endforeach
                     @endforeach
-                @endforeach
+                @endif
             </tbody>
         </table>
     </div>

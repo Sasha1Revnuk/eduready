@@ -41,4 +41,8 @@ class Test extends Eloquent
     {
         return $this->hasMany(\App\Models\Question::class);
     }
+    public function test_results()
+    {
+        return $this->hasMany(\App\Models\TestResult::class);
+    }
 }

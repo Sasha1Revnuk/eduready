@@ -13,7 +13,7 @@
                 <h4>@lang('lang.footer.categories')</h4>
                 <ul>
                     @foreach($categories as $category)
-                        <li><a href="{{'/category/' . $category->id}}">{{$category->title}}</a></li>
+                        <li><a href="{{'/category/' . $category->url}}">{{$category->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -57,5 +57,6 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="{{asset('js/gmaps.min.js')}}"></script>
 <script src="{{asset('js/theme.js')}}"></script>
+
 </body>
 </html>

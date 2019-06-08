@@ -68,4 +68,9 @@ class User extends Eloquent
 					->withPivot('id')
 					->withTimestamps();
 	}
+
+    public function test_results()
+    {
+        return $this->hasMany(\App\Models\TestResult::class, 'id', 'user_id');
+    }
 }

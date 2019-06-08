@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Question;
 use App\Models\RoleUser;
 use App\Models\Test;
+use App\Models\TestResult;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -369,14 +370,15 @@ class TestsController extends Controller
 
     public function show(Request $request)
     {
+        $courceFilter = Course::query()
+            ->whereIn('id',  explode(',', Auth::user()->courses))
+            ->get();
         $cources = Course::query()
             ->whereIn('id',  explode(',', Auth::user()->courses));
         if ($request->get('cource')) {
             $cources->where('id', $request->get('cource'));
         }
         $cources = $cources->get();
-
-
         $testsCollection = collect();
         foreach ($cources as $cource) {
             $test = Test::query()
@@ -387,12 +389,72 @@ class TestsController extends Controller
             $testsCollection->push($test);
         }
         $data = [
+            'courceFilter' => $courceFilter,
             'title' => 'Тести',
             'role' => $this->role,
             'userName' => explode(' ',$this->user->name),
             'tests' => $testsCollection,
-            'cources' => $cources
+            'cources' => $cources,
+            'user' => $this->user
         ];
         return view('admin.tests.student')->with(['data' => $data]);
+    }
+
+    public function info(Request $request)
+    {
+        $result = TestResult::where('test_id', $request->get('test_id'))->where('user_id', $this->user->id)->first();
+        if($result) {
+            return redirect()->back();
+        }
+
+        $test = Test::with('questions')->find($request->get('test_id'));
+
+        $data = [
+            'title' => 'Розпочати тест?',
+            'role' => $this->role,
+            'userName' => explode(' ',$this->user->name),
+            'time' => '15 хв',
+            'test' => $test
+        ];
+        return view('admin.tests.info')->with(['data' => $data]);
+    }
+
+    public function testing(Request $request)
+    {
+        $test = Test::with('questions')->with('questions.answers')->find($request->get('test_id'));
+        $data = [
+            'title' => 'Проходження тесту',
+            'role' => $this->role,
+            'userName' => explode(' ',$this->user->name),
+            'time' => 15,
+            'test' => $test
+        ];
+        return view('admin.tests.testing')->with(['data' => $data]);
+    }
+
+    public  function testResult(Request $request)
+    {
+        $mark = 0;
+        foreach ($request->get('answer') as $question) {
+            $result = 0;
+            foreach ($question as $answer) {
+                $ans = Answer::find($answer)->right;
+                if ( $ans > 0) {
+                    $result += $ans;
+                } else {
+                    $result = 0;
+                    break;
+                }
+            }
+            $mark += $result;
+        }
+        $mark = round($mark);
+        $testResult = new TestResult();
+        $testResult->test_id = $request->get('test_id');
+        $testResult->user_id = $this->user->id;
+        $testResult->mark = $mark;
+        $testResult->save();
+
+        return redirect()->route('student-tests');
     }
 }

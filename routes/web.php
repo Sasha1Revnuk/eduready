@@ -103,5 +103,20 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::post('/save-answer', 'Admin\TestsController@answerSave')->name('answersSave');
 
         Route::get('/student', 'Admin\TestsController@show')->name('student-tests');
+        Route::get('/info', 'Admin\TestsController@info')->name('test-info');
+        Route::post('/testing', 'Admin\TestsController@testing')->name('start-test');
+        Route::post('/test-result', 'Admin\TestsController@testResult')->name('test-result');
+    });
+
+    Route::group(['prefix' => 'advantages'], function () {
+        Route::get('/', 'Admin\AdvantagesController@index')->name('admin-advantages');
+        Route::get('/add', 'Admin\AdvantagesController@add')->name('admin-advantages-add');
+        Route::get('/edit', 'Admin\AdvantagesController@edit')->name('admin-advantages-edit');
+        Route::get('/delete', 'Admin\AdvantagesController@delete')->name('admin-advantages-edit');
+        Route::post('/save', 'Admin\AdvantagesController@save')->name('admin-advantage-save');
+    });
+    Route::group(['prefix' => 'about-us'], function () {
+        Route::get('/', 'Admin\AboutUsController@index')->name('admin-about-us');
+        Route::post('/save', 'Admin\AboutUsController@save')->name('admin-about-us-save');
     });
 });

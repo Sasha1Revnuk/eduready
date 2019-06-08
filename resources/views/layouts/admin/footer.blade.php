@@ -156,6 +156,21 @@
 <script src="{{asset('/admin/js/plugins.js')}}"></script>
 <script src="{{asset('/admin/js/main.js')}}"></script>
 <script src="{{asset('/admin/js/ckeditor/ckeditor.js')}}"></script>
+@if(Route::currentRouteName() == 'start-test')
+    <script src="{{asset('/admin/js/dist/jquery.progressBarTimer.min.js')}}"></script>
+    <script>
+        $("#example-progress-bar").progressBarTimer({
+            timeLimit: 60, //total number of seconds
+            warningThreshold: 5, //seconds remaining triggering switch to warning color
+            autoStart: true, // start the countdown automatically
+            onFinish: function() {}, //invoked once the timer expires
+            baseStyle: 'bg-danger', //bootstrap progress bar style at the beginning of the timer
+            warningStyle: 'bg-danger', //bootstrap progress bar style in the warning phase
+            smooth: true, // should the timer be smooth or stepping
+            completeStyle: 'bg-success' //bootstrap progress bar style at completion of timer
+        }).start()
+    </script>
+@endif
 <!-- Javascript code only for this page -->
 </body>
 </html>
