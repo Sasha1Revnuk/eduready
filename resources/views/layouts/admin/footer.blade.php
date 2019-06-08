@@ -167,7 +167,9 @@
             timeLimit: 1500, //total number of seconds
             warningThreshold: 5, //seconds remaining triggering switch to warning color
             autoStart: true, // start the countdown automatically
-            onFinish: function() {}, //invoked once the timer expires
+            onFinish: function() {
+                $('#button').trigger('click');
+            }, //invoked once the timer expires
             baseStyle: 'bg-danger', //bootstrap progress bar style at the beginning of the timer
             warningStyle: 'bg-danger', //bootstrap progress bar style in the warning phase
             smooth: true, // should the timer be smooth or stepping
