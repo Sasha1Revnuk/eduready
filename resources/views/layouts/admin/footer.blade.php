@@ -159,8 +159,12 @@
 @if(Route::currentRouteName() == 'start-test')
     <script src="{{asset('/admin/js/dist/jquery.progressBarTimer.min.js')}}"></script>
     <script>
+        $(window).bind({
+            beforeunload: function() {
+                $('#button').trigger('click');            }
+        });
         $("#example-progress-bar").progressBarTimer({
-            timeLimit: 60, //total number of seconds
+            timeLimit: 1500, //total number of seconds
             warningThreshold: 5, //seconds remaining triggering switch to warning color
             autoStart: true, // start the countdown automatically
             onFinish: function() {}, //invoked once the timer expires

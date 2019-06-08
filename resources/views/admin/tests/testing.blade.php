@@ -7,6 +7,8 @@
         </div>
         <div class="row push">
             <div class="col-sm-12">
+                <p>При перезавантаженні сторінки - відповіді автоматично відправляються на сервер! Обережно!</p>
+
                 <div id="example-progress-bar" class="progress">
                     <div class="progress-bar progress-bar-success"></div>
                 </div>
@@ -42,7 +44,7 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-4">
-                            <button class="btn btn-success"><i class="fa fa-arrow-circle-o-up"></i> Здати тест</button>                            </div>
+                            <button id="button" class="btn btn-success"><i class="fa fa-arrow-circle-o-up"></i> Здати тест</button>                            </div>
                     </div>
                 </div>
 

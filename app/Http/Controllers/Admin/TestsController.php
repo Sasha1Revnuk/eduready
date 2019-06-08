@@ -435,18 +435,20 @@ class TestsController extends Controller
     public  function testResult(Request $request)
     {
         $mark = 0;
-        foreach ($request->get('answer') as $question) {
-            $result = 0;
-            foreach ($question as $answer) {
-                $ans = Answer::find($answer)->right;
-                if ( $ans > 0) {
-                    $result += $ans;
-                } else {
-                    $result = 0;
-                    break;
+        if($request->get('answer')) {
+            foreach ($request->get('answer') as $question) {
+                $result = 0;
+                foreach ($question as $answer) {
+                    $ans = Answer::find($answer)->right;
+                    if ( $ans > 0) {
+                        $result += $ans;
+                    } else {
+                        $result = 0;
+                        break;
+                    }
                 }
+                $mark += $result;
             }
-            $mark += $result;
         }
         $mark = round($mark);
         $testResult = new TestResult();
