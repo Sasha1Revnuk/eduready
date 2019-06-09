@@ -53,6 +53,8 @@
                             <a href="{{'/adm/tests/add-question?test_id=' . $data['test']->id}}" class="btn btn-warning"><i class="fa fa-question"></i> Додати питання</a>
                         @endif
                         <button class="btn btn-success"><i class="fa fa-floppy-o"></i> Зберегти</button>
+                        <a href="{{'/adm/tests/view?test_id=' . $data['test']->id}}" class="btn btn-default"><i class="fa fa-forward"></i> Подивитись результати</a>
+
                     </div>
                 </div>
             </div>

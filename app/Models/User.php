@@ -73,4 +73,9 @@ class User extends Eloquent
     {
         return $this->hasMany(\App\Models\TestResult::class, 'id', 'user_id');
     }
+
+    public static function getTitleGroup($groups, $group_id)
+    {
+        return $groups[$group_id];
+    }
 }

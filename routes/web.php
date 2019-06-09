@@ -90,6 +90,8 @@ Route::group(['prefix' => 'adm', 'middleware' => 'auth'], function () {
         Route::get('/', 'Admin\TestsController@index')->name('tests');
         Route::get('/add', 'Admin\TestsController@add')->name('testsAdd');
         Route::get('/edit', 'Admin\TestsController@update')->name('testsEdit');
+        Route::get('/view', 'Admin\TestsController@view')->name('testsView');
+        Route::get('/result-delete', 'Admin\TestsController@resultDelete')->name('resultDelete');
         Route::get('/add-question', 'Admin\TestsController@addQuestion')->name('testsAddQuestion');
         Route::post('/save-question', 'Admin\TestsController@questionsSave')->name('questionsSave');
         Route::get('/edit-question', 'Admin\TestsController@questionsUpdate')->name('questionsUpdate');

@@ -164,7 +164,7 @@
                 $('#button').trigger('click');            }
         });
         $("#example-progress-bar").progressBarTimer({
-            timeLimit: 1500, //total number of seconds
+            timeLimit: 1800, //total number of seconds
             warningThreshold: 5, //seconds remaining triggering switch to warning color
             autoStart: true, // start the countdown automatically
             onFinish: function() {

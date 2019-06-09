@@ -49,11 +49,9 @@
             </div>
         @endforeach
     @endif
-    <div id="login-logo" style="margin-bottom: 20px">
-        <a href="">
-            <img src="{{asset('/admin/img/template/uadmin_logo.png')}}" alt="logo">
-        </a>
-    </div>
+        <div id="login-logo" style="margin-bottom: 20px">
+            <a href="{{route('main')}}" style="text-decoration: none"><h2 style="color:#002347"><span style="color:#fdc632">< &#8260; > </span><strong>eduready</strong></h2></a>
+        </div>
     <!-- Login Form -->
     <form  role="form" method="POST" action="{{ route('saveUser') }}" class="form-horizontal">
         {{csrf_field()}}

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
@@ -66,7 +67,7 @@
         <!-- END Mobile Navigation -->
 
         <!-- Logo -->
-        <a href="/" class="navbar-brand"><img src="{{asset('admin/img/template/logo.png')}}" alt="logo"></a>
+        <a class="navbar-brand " href="{{route('main')}}" style="padding-top: 0px"><h4 style="color:#ffffff"><span style="color:#fdc632">< &#8260; > </span><strong>eduready</strong></h4></a>
 
         <!-- Loading Indicator, Used for demostrating how loading of widgets could happen, check main.js - uiDemo() -->
         <div id="loading" class="pull-left"><i class="fa fa-certificate fa-spin"></i></div>
@@ -108,12 +109,6 @@
         <!-- Sidebar -->
         <aside id="page-sidebar" class="collapse navbar-collapse navbar-main-collapse">
             <!-- Sidebar search -->
-            <form id="sidebar-search" action="page_search_results.html" method="post">
-                <div class="input-group">
-                    <input type="text" id="sidebar-search-term" name="sidebar-search-term" placeholder="Пошук...">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-            </form>
             <!-- END Sidebar search -->
 
             <!-- Primary Navigation -->

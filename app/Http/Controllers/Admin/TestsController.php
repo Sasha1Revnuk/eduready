@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Answer;
 use App\Models\Course;
+use App\Models\Group;
 use App\Models\Question;
 use App\Models\RoleUser;
 use App\Models\Test;
@@ -115,6 +116,52 @@ class TestsController extends Controller
 
         return redirect()->route('tests');
     }
+
+    public function view(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'test_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+        $data = [
+            'title' => 'Результати тесту',
+            'role' => $this->role,
+            'userName' => explode(' ',$this->user->name),
+            'results' => TestResult::where('test_id', $request->get('test_id'))->get(),
+            'groups' => $this->getGroupList()
+        ];
+        return view('admin.tests.view')->with(['data' => $data]);
+
+    }
+
+    public  function getGroupList()
+    {
+        $groups = Group::all();
+        foreach ($groups as $group) {
+            $groupsArray[$group->id] = $group->title;
+        }
+        return $groupsArray;
+
+    }
+
+    public function resultDelete(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $result = TestResult::find($request->get('id'));
+        $result->delete();
+        return redirect()->back();
+    }
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function addQuestion(Request $request)
     {
@@ -228,6 +275,8 @@ class TestsController extends Controller
         $test->delete();
         return redirect()->route('tests');
     }
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
     public function addAnswer(Request $request)
     {

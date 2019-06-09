@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Sign Up</title>
+    <title>Sign In</title>
 
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
@@ -50,9 +50,7 @@
         @endforeach
     @endif
     <div id="login-logo" style="margin-bottom: 20px">
-        <a href="">
-            <img src="{{asset('/admin/img/template/uadmin_logo.png')}}" alt="logo">
-        </a>
+        <a href="{{route('main')}}" style="text-decoration: none"><h2 style="color:#002347"><span style="color:#fdc632">< &#8260; > </span><strong>eduready</strong></h2></a>
     </div>
     <!-- Login Form -->
     <form  role="form" method="POST" action="{{ url('/login') }}"   class="form-horizontal">
@@ -68,16 +66,15 @@
         <div class="form-group">
             <div class="col-xs-12">
                 <div class="input-group">
-                    <input type="password" id="login-password" name="password" placeholder="Password.." class="form-control">
+                    <input type="password" id="login-password" name="password" placeholder="Пароль..." class="form-control">
                     <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
                 </div>
             </div>
         </div>
         <div class="clearfix">
             <div class="btn-group btn-group-sm pull-right">
-                <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right"></i> Login</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right"></i> Увійти</button>
             </div>
-            <label id="topt-fixed-header-top" class="switch switch-success pull-left" data-toggle="tooltip" title="Remember me"><input type="checkbox"><span></span></label>
         </div>
     </form>
 
