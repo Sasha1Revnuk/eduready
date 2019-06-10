@@ -253,24 +253,33 @@ class TestsController extends Controller
 
     }
 
-    public function testDelete(Request $request)
+    public function testDelete(Request $request, $id = null)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => 'required',
-        ]);
+        if($id == null) {
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+            ]);
 
-        if($validator->fails()) {
-            return redirect()->back()->withErrors($validator);
+            if($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+            $test = Test::with('questions')->with('test_results')->find($request->get('id'));
+            if ($test->user_id != $this->user->id) {
+                return redirect()->back();
+            }
+
+        } else {
+            $test = Test::with('questions')->with('test_results')->find($id);
         }
 
-        $test = Test::with('questions')->find($request->get('id'));
-        if ($test->user_id != $this->user->id) {
-            return redirect()->back();
+        foreach ($test->test_results as $result) {
+            $result->delete();
         }
 
         foreach ($test->questions as $question) {
             $this->questionDeleteMethod($question);
         }
+
 
         $test->delete();
         return redirect()->route('tests');

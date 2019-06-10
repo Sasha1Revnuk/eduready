@@ -27,7 +27,7 @@
             <div class="row">
                 <h4 class="text-center">{{$data['title']}}</h4>
             </div>
-            
+
             <div class="col-md-6 form-group">
                 <a href="{{'/adm/tests/edit?test_id=' . request()->get('test_id')}}" class="btn btn-info"><i class="fa fa-backward"></i> Повернутись назад</a>
             </div>

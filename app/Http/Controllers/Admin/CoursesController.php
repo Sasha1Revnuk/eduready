@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Group;
 use App\Models\RoleUser;
+use App\Models\Test;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -194,6 +195,16 @@ class CoursesController extends Controller
         }
 
         File::deleteDirectory(public_path() . '/img/courses/' . $cource->id);
+
+        $tests = Test::where('cource_id', $cource->id)->get();
+
+        if (count($tests) > 0) {
+            foreach ($tests as $test) {
+                $testController = new TestsController();
+                $testController->testDelete($request, $test->id);
+            }
+        }
+
         $cource->delete();
 
         $users = User::query()
